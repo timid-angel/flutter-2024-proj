@@ -65,6 +65,7 @@ flutter:
   assets: 
     - assets/sample_album_art
     - assets/sample_profile_picture
+    - assets/sample_songs
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
