@@ -25,6 +25,8 @@ class ListenerFavorites extends StatelessWidget {
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 15,
               children: [
                 Container(
                   padding: EdgeInsets.only(bottom: 16),
