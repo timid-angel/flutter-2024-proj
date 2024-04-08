@@ -1,5 +1,4 @@
-import 'package:masinqo/data/artist_data.dart';
-import 'package:masinqo/data/songs_data.dart';
+import 'package:masinqo/data/placeholders.dart';
 import 'package:masinqo/models/albums.dart';
 
 List<Album> albumData = [
@@ -9,11 +8,8 @@ List<Album> albumData = [
     genre: "Rap",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/gkmc.jpg",
-    artist: artistData[0],
-    songs: [
-      songData[0],
-      songData[1],
-    ],
+    artist: pArtist,
+    songs: [],
   ),
   Album(
     title:
@@ -24,10 +20,8 @@ List<Album> albumData = [
         "JAZZPOPRAPHIPHOPSOULFUNKPUNKROCKJAZZPOPRAPHIPHOPSOULFUNKPUNKROCKJAZZPOPRAPHIPHOPSOULFUNKPUNKROCK",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/mr_morale.png",
-    artist: artistData[0],
-    songs: [
-      ...songData,
-    ],
+    artist: pArtist,
+    songs: [],
   ),
   Album(
     title: "Masterpiece",
@@ -35,10 +29,8 @@ List<Album> albumData = [
     genre: "Indie Rock",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/masterpiece.jpg",
-    artist: artistData[1],
-    songs: [
-      ...songData,
-    ],
+    artist: pArtist,
+    songs: [],
   ),
   Album(
     title: "Dragon New Warm Mountain I Believe in You",
@@ -46,11 +38,8 @@ List<Album> albumData = [
     genre: "Indie Rock",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/dnwmitinu.png",
-    artist: artistData[1],
-    songs: [
-      ...songData,
-      ...songData,
-    ],
+    artist: pArtist,
+    songs: [],
   ),
   Album(
     title: "Beloved! Paradise! Jazz!",
@@ -58,14 +47,8 @@ List<Album> albumData = [
     genre: "Modern Jazz",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/beloved_paradise_jazz.png",
-    artist: artistData[2],
-    songs: [
-      songData[2],
-      songData[3],
-      songData[4],
-      songData[5],
-      songData[6],
-    ],
+    artist: pArtist,
+    songs: [],
   ),
   Album(
     title: "And in the Darkness, Hearts Aglow",
@@ -73,9 +56,7 @@ List<Album> albumData = [
     genre: "Chamber Pop",
     date: DateTime.now(),
     albumArt: "assets/sample_album_art/hearts_aglow.png",
-    artist: artistData[3],
-    songs: [
-      ...songData,
-    ],
+    artist: pArtist,
+    songs: [],
   ),
 ];

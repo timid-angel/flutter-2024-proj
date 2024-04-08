@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class AppColors {
   static const black = Color.fromRGBO(0, 0, 0, 1);
@@ -18,4 +19,16 @@ class AppColors {
   static const red = Color.fromARGB(255, 229, 51, 48);
 
   static const fontColor = Color(0xF3F3F3FF);
+
+  static const grayAppbarGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color.fromARGB(200, 34, 34, 34),
+      Color.fromARGB(200, 34, 34, 34),
+      Color.fromARGB(200, 34, 34, 34),
+      Colors.transparent,
+    ],
+    tileMode: TileMode.decal,
+  );
 }
