@@ -31,4 +31,15 @@ class AppColors {
     ],
     tileMode: TileMode.decal,
   );
+  static const grayBodyGradient = LinearGradient(
+      begin: Alignment.bottomCenter,
+      end: Alignment.topCenter,
+      colors: [
+        Color.fromARGB(255, 34, 34, 34),
+        Colors.transparent,
+      ],
+      stops: [
+        0.85,
+        1,
+      ]);
 }
