@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ListenerFavorites extends StatelessWidget {
   const ListenerFavorites({super.key});
@@ -7,8 +6,8 @@ class ListenerFavorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.all(1.0),
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(1.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,7 +28,7 @@ class ListenerFavorites extends StatelessWidget {
               mainAxisSpacing: 15,
               children: [
                 Container(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                       // color: Colors.amber,
                       borderRadius: BorderRadius.circular(10),
@@ -41,7 +40,7 @@ class ListenerFavorites extends StatelessWidget {
                           "assets/sample_album_art/hearts_aglow.png",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       const Text("Album Name",
@@ -53,7 +52,7 @@ class ListenerFavorites extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                       // color: Colors.amber,
                       borderRadius: BorderRadius.circular(10),
@@ -65,7 +64,7 @@ class ListenerFavorites extends StatelessWidget {
                           "assets/sample_album_art/beloved_paradise_jazz.png",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       const Text("Album Name",
@@ -77,7 +76,7 @@ class ListenerFavorites extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                       // color: Colors.amber,
                       borderRadius: BorderRadius.circular(10),
@@ -89,7 +88,7 @@ class ListenerFavorites extends StatelessWidget {
                           "assets/sample_album_art/gkmc.png",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       const Text("Album Name",
@@ -101,7 +100,7 @@ class ListenerFavorites extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
                       // color: Colors.amber,
                       borderRadius: BorderRadius.circular(10),
@@ -113,7 +112,7 @@ class ListenerFavorites extends StatelessWidget {
                           "assets/sample_album_art/mr_morale.png",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       const Text("Album Name",

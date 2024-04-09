@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ListenerAppbar extends StatelessWidget {
-  const ListenerAppbar({Key? key}) : super(key: key);
+  const ListenerAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: const IconThemeData(color: Colors.white),
       leading: Image.asset(
         "assets/images/logo.png",
       ),

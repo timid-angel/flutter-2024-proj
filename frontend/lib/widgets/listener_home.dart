@@ -6,8 +6,8 @@ class ListenerHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 35),
-      margin: EdgeInsets.all(1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 35),
+      margin: const EdgeInsets.all(1.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,8 +42,8 @@ class ListenerHome extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -98,8 +98,8 @@ class ListenerHome extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -154,8 +154,8 @@ class ListenerHome extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -210,8 +210,8 @@ class ListenerHome extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

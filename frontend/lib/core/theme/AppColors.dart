@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class AppColors {
   static const black = Color.fromRGBO(0, 0, 0, 1);

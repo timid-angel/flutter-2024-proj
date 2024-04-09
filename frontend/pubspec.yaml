@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   palette_generator: ^0.3.3+3
+  file_picker: ^8.0.0+1
+  image_picker: ^1.0.7
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,7 @@ flutter:
     - assets/sample_profile_picture/
     - assets/sample_songs/
     - assets/images/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

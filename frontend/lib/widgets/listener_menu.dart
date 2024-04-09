@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -8,8 +7,8 @@ class MenuDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        color: Color.fromARGB(235, 0, 0, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        color: const Color.fromARGB(235, 0, 0, 0),
         child: ListView(
           children: [
             DrawerHeader(
@@ -19,7 +18,7 @@ class MenuDrawer extends StatelessWidget {
                     "assets/images/user.png",
                     height: 100,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   const Text(

@@ -6,8 +6,8 @@ class ListenerLibrary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.all(1.0),
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(1.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
