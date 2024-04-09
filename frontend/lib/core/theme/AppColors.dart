@@ -12,11 +12,7 @@ class AppColors {
 
   static const listener1 = Color.fromRGBO(237, 129, 255, 1);
   static const listener2 = Color.fromRGBO(202, 87, 223, 1);
-  // static const listner3 = Color.fromRGBO(57, 220, 243, 1);
-
-  static const green = Color.fromARGB(255, 62, 185, 66);
-  static const yellow = Color.fromARGB(255, 246, 205, 70);
-  static const red = Color.fromARGB(255, 229, 51, 48);
+  static const listener3 = Color.fromRGBO(74, 19, 84, 1);
 
   static const fontColor = Color(0xF3F3F3FF);
 
@@ -42,4 +38,10 @@ class AppColors {
         0.85,
         1,
       ]);
+
+  static const slantedPurpleGradient = LinearGradient(
+    transform: GradientRotation(-0.7),
+    colors: [Colors.black, Color.fromARGB(146, 62, 33, 68), Colors.black],
+    stops: [0, 0.27, 1],
+  );
 }

@@ -24,7 +24,7 @@ void main() {
   runApp(
     MaterialApp(
       home: PlaylistWidget(
-        playlist: db.playlists[2],
+        playlist: db.playlists[3],
       ),
       theme: AppThemeData.listnerTheme,
     ),
