@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/models/albums.dart';
-import 'package:masinqo/widgets/listener_home_album.dart';
+import 'package:masinqo/widgets/listener_favorite_album.dart';
 
 class ListenerFavorites extends StatelessWidget {
   const ListenerFavorites({
@@ -26,11 +26,14 @@ class ListenerFavorites extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: favorites.length,
-                itemBuilder: (context, index) =>
-                    ListenerHomeAlbumCard(album: favorites[index]),
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                childAspectRatio: 0.71,
+                children: favorites
+                    .map((a) => ListenerFavoriteAlbumCard(album: a))
+                    .toList(),
               ),
             ),
           ],

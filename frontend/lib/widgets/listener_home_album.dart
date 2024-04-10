@@ -43,7 +43,7 @@ class ListenerHomeAlbumCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
             width: deviceWidth * 0.45,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -31,6 +31,8 @@ List<Listener> listenerData = [
     playlists: <Playlist>[],
     favorites: <Album>[
       ...albumData,
+      ...albumData,
+      ...albumData,
     ],
   ),
   Listener(
