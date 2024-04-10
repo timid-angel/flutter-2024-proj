@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/AppColors.dart';
 import 'package:masinqo/models/playlist.dart';
+import 'package:masinqo/widgets/listener_appbar.dart';
 import 'package:masinqo/widgets/listener_playlist_albumart.dart';
 import 'package:masinqo/widgets/listener_playlist_buttons.dart';
 import 'package:masinqo/widgets/listener_playlist_headline.dart';
@@ -23,27 +24,7 @@ class PlaylistWidget extends StatelessWidget {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxScrolled) {
           return [
-            SliverAppBar(
-              leadingWidth: 65,
-              backgroundColor: const Color.fromARGB(0, 238, 233, 233),
-              elevation: 0,
-              scrolledUnderElevation: 0.0,
-              pinned: false,
-              leading: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 0, 5),
-                child: Image.asset(
-                  "assets/images/logo.png",
-                ),
-              ),
-              title: Text(
-                'Masinqo',
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      color: AppColors.fontColor,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 32,
-                    ),
-              ),
-            ),
+            const ListenerAppbar(),
           ];
         },
         body: Stack(
@@ -71,7 +52,10 @@ class PlaylistWidget extends StatelessWidget {
                           deleteController: () {},
                         ),
                         const Divider(height: 30, thickness: 2),
-                        PlaylistTracksWidget(playlist: playlist),
+                        PlaylistTracksWidget(
+                          playlist: playlist,
+                          onDelete: () {},
+                        ),
                       ],
                     ),
                   ),

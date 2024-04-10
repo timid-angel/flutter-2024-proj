@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/models/songs.dart';
 
-class PlaylistSongTileWidget extends StatelessWidget {
-  const PlaylistSongTileWidget({
+class AlbumSongTileWidget extends StatelessWidget {
+  const AlbumSongTileWidget({
     super.key,
     required this.song,
-    required this.onDelete,
+    required this.onAdd,
   });
 
   final Song song;
-  final Function() onDelete;
+  final Function() onAdd;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,7 @@ class PlaylistSongTileWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -37,7 +38,7 @@ class PlaylistSongTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: deviceWidth * 0.52,
+                    width: deviceWidth * 0.5,
                     child: Text(
                       song.name,
                       maxLines: 1,
@@ -57,13 +58,19 @@ class PlaylistSongTileWidget extends StatelessWidget {
                   )
                 ],
               ),
+              PopupMenuButton(
+                  icon: const Icon(Icons.add_circle),
+                  itemBuilder: (context) {
+                    return [
+                      const PopupMenuItem(child: Text('Playlist 1')),
+                      const PopupMenuItem(child: Text('Playlist 2')),
+                      const PopupMenuItem(child: Text('Playlist 3')),
+                      const PopupMenuItem(child: Text('Playlist 4')),
+                    ];
+                  }),
+              // IconButton(onPressed: () {}, icon: const Icon(Icons.add_circle))
             ],
           ),
-          IconButton(
-            icon: const Icon(Icons.remove_circle_outline,
-                color: Color.fromARGB(255, 237, 86, 84)),
-            onPressed: onDelete,
-          )
         ],
       ),
     );

@@ -1,45 +1,33 @@
 import 'package:flutter/material.dart';
-import 'widgets/listener_menu.dart';
-import 'widgets/listener_favorites.dart';
-import 'widgets/listener_home.dart';
-import 'widgets/listener_tabs.dart';
-import 'widgets/listener_library.dart';
-import 'widgets/listener_appbar.dart';
+import 'package:masinqo/core/theme/AppThemeData.dart';
+import 'package:masinqo/data/admin_data.dart';
+import 'package:masinqo/data/album_data.dart';
+import 'package:masinqo/data/artist_data.dart';
+import 'package:masinqo/data/database.dart';
+import 'package:masinqo/data/listener_data.dart';
+import 'package:masinqo/data/playlist_data.dart';
+import 'package:masinqo/data/songs_data.dart';
+import 'package:masinqo/pages/listener.dart';
 
 void main() {
-  runApp(const Listener());
-}
+  Database db = Database(
+    admins: adminData,
+    albums: albumData,
+    artists: artistData,
+    listeners: listenerData,
+    playlists: playlistData,
+    songs: songData,
+  );
 
-class Listener extends StatelessWidget {
-  const Listener({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          endDrawer: MenuDrawer(),
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(kToolbarHeight),
-            child: ListenerAppbar(),
-          ),
-          body: TabBarView(
-            children: [
-              ListenerHome(),
-              ListenerFavorites(),
-              ListenerLibrary(),
-            ],
-          ),
-          bottomNavigationBar: BottomAppBar(
-            color: Colors.transparent,
-            height: 55,
-            child: Tabs(),
-          ),
-          backgroundColor: Color.fromARGB(255, 44, 44, 44),
-        ),
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: AppThemeData.listnerTheme,
+    home: DefaultTabController(
+      length: 3,
+      child: ListenerWidget(
+        albums: db.albums,
+        favorites: db.listeners[2].favorites,
       ),
-    );
-  }
+    ),
+  ));
 }

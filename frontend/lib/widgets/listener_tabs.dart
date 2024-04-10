@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/core/theme/AppColors.dart';
 
-class Tabs extends StatelessWidget {
-  const Tabs({super.key});
+class BottomNavigationWidget extends StatelessWidget {
+  const BottomNavigationWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const TabBar(
-      tabs: [
+    return TabBar(
+      dividerHeight: 0,
+      indicatorColor: AppColors.listener2,
+      splashBorderRadius: BorderRadius.circular(5),
+      tabs: const [
         Tab(
           icon: Icon(
             Icons.home_filled,

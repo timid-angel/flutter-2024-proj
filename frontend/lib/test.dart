@@ -8,7 +8,6 @@ import 'package:masinqo/data/artist_data.dart';
 import 'package:masinqo/data/listener_data.dart';
 import 'package:masinqo/data/songs_data.dart';
 import 'package:masinqo/data/playlist_data.dart';
-
 import 'package:masinqo/pages/listener_playlist.dart';
 
 void main() {

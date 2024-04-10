@@ -28,5 +28,8 @@ class AppThemeData {
         fontSize: 16,
       ),
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent,
+    ),
   );
 }
