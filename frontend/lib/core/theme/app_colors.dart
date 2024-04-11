@@ -4,6 +4,8 @@ class AppColors {
   static const black = Color.fromRGBO(0, 0, 0, 1);
   static const blackLight = Color.fromARGB(255, 20, 20, 20);
   static const blackLighter = Color(0xFF333333);
+  static const blueish = Color.fromARGB(255, 17, 8, 52);
+  static const greenish = Color.fromARGB(255, 1, 55, 71);
 
   static const artist1 = Color.fromRGBO(57, 220, 243, 1);
   // static const artist2 = Color.fromRGBO(237, 129, 255, 1);
