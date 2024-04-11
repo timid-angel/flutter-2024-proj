@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masinqo/core/theme/AppThemeData.dart';
+import 'package:masinqo/core/theme/app_theme_data.dart';
 import 'package:masinqo/data/database.dart';
 
 import 'package:masinqo/data/admin_data.dart';

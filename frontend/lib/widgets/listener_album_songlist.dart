@@ -28,7 +28,7 @@ class AlbumTracksWidget extends StatelessWidget {
           itemCount: playlist.songs.length,
           itemBuilder: (context, idx) {
             Song song = playlist.songs[idx];
-            return AlbumSongTileWidget(song: song, onAdd: this.onAdd);
+            return AlbumSongTileWidget(song: song, onAdd: onAdd);
           },
         ),
       ],

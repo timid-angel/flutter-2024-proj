@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masinqo/core/theme/AppThemeData.dart';
+import 'package:masinqo/core/theme/app_theme_data.dart';
 import 'package:masinqo/data/admin_data.dart';
 import 'package:masinqo/data/album_data.dart';
 import 'package:masinqo/data/artist_data.dart';
@@ -27,6 +27,7 @@ void main() {
       child: ListenerWidget(
         albums: db.albums,
         favorites: db.listeners[2].favorites,
+        playlists: db.playlists,
       ),
     ),
   ));

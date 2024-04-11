@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:masinqo/core/theme/AppColors.dart';
+import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/models/albums.dart';
+import 'package:masinqo/models/playlist.dart';
 import 'package:masinqo/widgets/listener_appbar.dart';
 import 'package:masinqo/pages/listener_favorites.dart';
 import 'package:masinqo/pages/listener_home.dart';
-import 'package:masinqo/widgets/listener_library.dart';
+import 'package:masinqo/pages/listener_library.dart';
 import 'package:masinqo/widgets/listener_menu.dart';
 import 'package:masinqo/widgets/listener_tabs.dart';
 
@@ -13,10 +14,12 @@ class ListenerWidget extends StatelessWidget {
     super.key,
     required this.albums,
     required this.favorites,
+    required this.playlists,
   });
 
   final List<Album> albums;
   final List<Album> favorites;
+  final List<Playlist> playlists;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,9 @@ class ListenerWidget extends StatelessWidget {
             ListenerFavorites(
               favorites: favorites,
             ),
-            ListenerLibrary(),
+            ListenerLibrary(
+              playlists: playlists,
+            ),
           ],
         ),
       ),
