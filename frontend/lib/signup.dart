@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/brand.dart';
-import 'core/theme/AppColors.dart';
+import 'core/theme/app_colors.dart';
 import 'widgets/custom_text_field.dart';
 
 void main() {
