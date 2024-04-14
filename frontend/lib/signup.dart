@@ -88,16 +88,6 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                     _isArtist = true;
                                   });
                                 },
-                                child: Text(
-                                  'Signup as an Artist',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                    color: _isArtist
-                                        ? Color.fromARGB(255, 12, 144, 188)
-                                        : Colors.white,
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Colors.transparent),
@@ -106,11 +96,21 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(10),
                                       side: BorderSide(
                                         color: _isArtist
-                                            ? Color.fromARGB(255, 12, 144, 188)
+                                            ? const Color.fromARGB(255, 12, 144, 188)
                                             : Colors.white,
                                         width: 2,
                                       ),
                                     ),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Signup as an Artist',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: _isArtist
+                                        ? const Color.fromARGB(255, 12, 144, 188)
+                                        : Colors.white,
                                   ),
                                 ),
                               ),
@@ -120,16 +120,6 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                     _isArtist = false;
                                   });
                                 },
-                                child: Text(
-                                  'Signup as a Listener',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                    color: _isArtist
-                                        ? Colors.white
-                                        : Colors.purple,
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Colors.transparent),
@@ -143,6 +133,16 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                         width: 2,
                                       ),
                                     ),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Signup as a Listener',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: _isArtist
+                                        ? Colors.white
+                                        : Colors.purple,
                                   ),
                                 ),
                               ),

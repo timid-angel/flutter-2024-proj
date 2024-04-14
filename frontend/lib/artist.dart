@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/data/album_data.dart';
 import './widgets/artist_drawer.dart';
-import './widgets/artist_CreateAlbumModal.dart';
-import './widgets/artist_AppBar.dart';
-import './widgets/artist_ProfileSection.dart';
-import './widgets/artist_albumCard.dart';
+import 'widgets/artist_create_album_modal.dart';
+import 'widgets/artist_app_bar.dart';
+import 'widgets/artist_profile_section.dart';
+import 'widgets/artist_album_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,10 +25,10 @@ class ArtistHomePage extends StatefulWidget {
   const ArtistHomePage({super.key});
 
   @override
-  _ArtistHomePageState createState() => _ArtistHomePageState();
+  ArtistHomePageState createState() => ArtistHomePageState();
 }
 
-class _ArtistHomePageState extends State<ArtistHomePage> {
+class ArtistHomePageState extends State<ArtistHomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

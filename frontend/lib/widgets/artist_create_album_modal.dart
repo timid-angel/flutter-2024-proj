@@ -6,10 +6,10 @@ class CreateAlbumModal extends StatefulWidget {
   const CreateAlbumModal({super.key});
 
   @override
-  _CreateAlbumModalState createState() => _CreateAlbumModalState();
+  CreateAlbumModalState createState() => CreateAlbumModalState();
 }
 
-class _CreateAlbumModalState extends State<CreateAlbumModal> {
+class CreateAlbumModalState extends State<CreateAlbumModal> {
   late TextEditingController _nameController;
   late TextEditingController _genreController;
   late TextEditingController _descriptionController;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io'; 
-import 'artist_drawer.dart';
-import 'artist_AppBar.dart';
+import '../widgets/artist_drawer.dart';
+import '../widgets/artist_app_bar.dart';
 import '../data/artist_data.dart'; 
 
 void main() {
@@ -12,14 +12,14 @@ void main() {
 }
 
 class ArtistProfile extends StatefulWidget {
- const ArtistProfile({Key? key}) : super(key: key);
+ const ArtistProfile({super.key});
 
 
   @override
-  _ArtistProfileState createState() => _ArtistProfileState();
+  ArtistProfileState createState() => ArtistProfileState();
 }
 
-class _ArtistProfileState extends State<ArtistProfile> {
+class ArtistProfileState extends State<ArtistProfile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _profileImagePath = 'assets/sample_profile_picture/weyes_blood.jpg'; 
 
@@ -144,7 +144,7 @@ class _ArtistProfileState extends State<ArtistProfile> {
 class RoundedInputField extends StatelessWidget {
   final String placeholder;
 
-const RoundedInputField({Key? key, required this.placeholder}) : super(key: key);
+const RoundedInputField({super.key, required this.placeholder});
 
 
   @override

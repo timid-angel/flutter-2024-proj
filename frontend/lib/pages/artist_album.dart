@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'artist_AddSongModal.dart';
-import 'artist_EditAlbumModal.dart';
-import 'artist_drawer.dart';
-import 'artist_AppBar.dart';
-import 'artist_SongCard.dart';
+import '../widgets/artist_add_song_modal.dart';
+import '../widgets/artist_edit_album_modal.dart';
+import '../widgets/artist_drawer.dart';
+import '../widgets/artist_app_bar.dart';
+import '../widgets/artist_song_card.dart';
 import '../data/songs_data.dart';
 import 'package:masinqo/models/songs.dart';
-import './artist_DeleteConfirmation.dart';
+import '../widgets/artist_delete_confirmation.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -37,10 +37,10 @@ class ArtistsAlbumPage extends StatefulWidget {
   });
 
   @override
-  _ArtistsAlbumPageState createState() => _ArtistsAlbumPageState();
+  ArtistsAlbumPageState createState() => ArtistsAlbumPageState();
 }
 
-class _ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
+class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
