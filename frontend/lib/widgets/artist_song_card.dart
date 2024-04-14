@@ -24,7 +24,7 @@ class SongCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        print('Playing $songName');
+        
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),

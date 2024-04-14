@@ -5,10 +5,10 @@ class AddSongModal extends StatefulWidget {
   const AddSongModal({super.key});
 
   @override
-  _AddSongModalState createState() => _AddSongModalState();
+  AddSongModalState createState() => AddSongModalState();
 }
 
-class _AddSongModalState extends State<AddSongModal> {
+class AddSongModalState extends State<AddSongModal> {
   late final TextEditingController _songNameController = TextEditingController();
   late String _filePath = '';
 

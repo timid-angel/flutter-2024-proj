@@ -9,7 +9,7 @@ void main() {
 }
 
 class AdminLogin extends StatelessWidget {
-  const AdminLogin({Key? key}) : super(key: key);
+  const AdminLogin({super.key});
 
   @override
   Widget build(BuildContext context) {

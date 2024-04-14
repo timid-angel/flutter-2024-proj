@@ -17,10 +17,10 @@ class EditSongModal extends StatefulWidget {
   });
 
   @override
-  _EditSongModalState createState() => _EditSongModalState();
+  EditSongModalState createState() => EditSongModalState();
 }
 
-class _EditSongModalState extends State<EditSongModal> {
+class EditSongModalState extends State<EditSongModal> {
   late String _newThumbnailPath;
 
 @override

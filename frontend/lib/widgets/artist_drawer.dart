@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'artist_ProfilePage.dart'; 
+import '../pages/artist_profile.dart'; 
 import '../data/artist_data.dart';
 
 class ArtistDrawer extends StatelessWidget {
- const ArtistDrawer({Key? key}) : super(key: key);
+ const ArtistDrawer({super.key});
 
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../data/songs_data.dart';
 import '../data/artist_data.dart';
-import 'artist_AlbumPage.dart';
+import '../pages/artist_album.dart';
 
 class AlbumCard extends StatelessWidget {
   final String albumName;
