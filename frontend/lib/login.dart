@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'widgets/brand.dart';
 import 'widgets/background.dart';
 
-void main() {
-  runApp(const LogIn());
-}
+class LoginWidget extends StatefulWidget {
+  const LoginWidget({super.key});
 
-class LogIn extends StatefulWidget {
-  const LogIn({Key? key}) : super(key: key);
   @override
-  _ArtistLoginPageState createState() => _ArtistLoginPageState();
+  LoginWidgetState createState() => LoginWidgetState();
 }
 
-class _ArtistLoginPageState extends State<LogIn> {
+class LoginWidgetState extends State<LoginWidget> {
   bool _isArtist = true;
 
   @override

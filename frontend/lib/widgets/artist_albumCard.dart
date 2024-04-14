@@ -5,7 +5,7 @@ import 'artist_AlbumPage.dart';
 
 class AlbumCard extends StatelessWidget {
   final String albumName;
-  final int tracks; 
+  final int tracks;
   final String genre;
   final String releaseDate;
   final String description;
@@ -24,6 +24,7 @@ class AlbumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String artistName = artistData.last.name;
+    double deviceWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
       onTap: () {
@@ -51,53 +52,67 @@ class AlbumCard extends StatelessWidget {
               width: 1,
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: AspectRatio(
-                    aspectRatio: 0.5,
-                    child: Image.asset(
-                      imagePath,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  width: deviceWidth * 0.5,
+                  height: deviceWidth * 0.5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
                       fit: BoxFit.cover,
+                      image: AssetImage(imagePath),
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  flex: 2,
+                // child: AspectRatio(
+                //   aspectRatio: 0.5,
+                //   child: Image.asset(
+                //     imagePath,
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: _buildDetailsColumn(artistName),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-Widget _buildDetailsColumn(String artistName) {
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildText('', _truncateText(albumName, 25), fontSize: 20, fontWeight: FontWeight.bold),
-        const SizedBox(height: 5),
-        _buildText('Tracks:', tracks.toString()), 
-        const SizedBox(height: 5),
-        _buildText('Genre:', _truncateText(genre, 14)),
-        const SizedBox(height: 5),
-        _buildText('Release Date:', releaseDate),
-        const SizedBox(height: 5),
-        _buildDescriptionText('Description:', _truncateText(description, 55)),
-      ],
-    ),
-  );
-}
-
+  Widget _buildDetailsColumn(String artistName) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildText('', _truncateText(albumName, 25),
+              fontSize: 20, fontWeight: FontWeight.bold),
+          const SizedBox(height: 5),
+          _buildText('Tracks:', tracks.toString()),
+          const SizedBox(height: 5),
+          _buildText('Genre:', _truncateText(genre, 14)),
+          const SizedBox(height: 5),
+          _buildText('Release Date:', releaseDate),
+          const SizedBox(height: 5),
+          _buildDescriptionText('Description:', _truncateText(description, 55)),
+        ],
+      ),
+    );
+  }
 
   String _truncateText(String text, int maxLength) {
     if (text.length <= maxLength) {
@@ -107,7 +122,8 @@ Widget _buildDetailsColumn(String artistName) {
     }
   }
 
-  Widget _buildText(String label, String value, {Color? color, double? fontSize, FontWeight? fontWeight}) {
+  Widget _buildText(String label, String value,
+      {Color? color, double? fontSize, FontWeight? fontWeight}) {
     return Row(
       children: [
         Text(

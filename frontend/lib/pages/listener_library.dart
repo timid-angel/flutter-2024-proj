@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/models/playlist.dart';
+import 'package:masinqo/pages/listener_add_playlist.dart';
+import 'package:masinqo/pages/listener_playlist.dart';
 import 'package:masinqo/widgets/listener_library_playlist.dart';
 
 class ListenerLibrary extends StatelessWidget {
@@ -25,11 +27,16 @@ class ListenerLibrary extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Favorites",
+                    "Playlists",
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddPlaylistWidget()));
+                    },
                     icon: const Icon(Icons.add_circle,
                         color: AppColors.listener2),
                   ),
@@ -43,7 +50,19 @@ class ListenerLibrary extends StatelessWidget {
                 crossAxisSpacing: 20,
                 childAspectRatio: 1.2,
                 children: playlists
-                    .map((a) => LibraryPlaylistCard(playlist: a))
+                    .map(
+                      (p) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlaylistWidget(playlist: p),
+                            ),
+                          );
+                        },
+                        child: LibraryPlaylistCard(playlist: p),
+                      ),
+                    )
                     .toList(),
               ),
             ),

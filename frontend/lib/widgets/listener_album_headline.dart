@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
-import 'package:masinqo/models/playlist.dart';
+import 'package:masinqo/models/albums.dart';
 
-class PlaylistHeadlineWidget extends StatefulWidget {
-  const PlaylistHeadlineWidget({
+class AlbumHeadlineWidget extends StatefulWidget {
+  const AlbumHeadlineWidget({
     super.key,
-    required this.playlist,
+    required this.album,
   });
 
-  final Playlist playlist;
+  final Album album;
 
   @override
-  State<PlaylistHeadlineWidget> createState() => _PlaylistHeadlineWidgetState();
+  State<AlbumHeadlineWidget> createState() => _AlbumHeadlineWidgetState();
 }
 
-class _PlaylistHeadlineWidgetState extends State<PlaylistHeadlineWidget> {
+class _AlbumHeadlineWidgetState extends State<AlbumHeadlineWidget> {
   bool liked = true;
 
   void _handleFavoriteTap() {
@@ -30,7 +30,7 @@ class _PlaylistHeadlineWidgetState extends State<PlaylistHeadlineWidget> {
       ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Album re-added to favorites'),
+        content: Text('Album added to favorites'),
         duration: Duration(seconds: 1),
         backgroundColor: AppColors.listener3,
       ));
@@ -52,14 +52,14 @@ class _PlaylistHeadlineWidgetState extends State<PlaylistHeadlineWidget> {
             SizedBox(
               width: deviceWidth * 0.7,
               child: Text(
-                widget.playlist.name,
+                widget.album.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             Text(
-              "${widget.playlist.songs.length} tracks",
+              "${widget.album.songs.length} tracks",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],

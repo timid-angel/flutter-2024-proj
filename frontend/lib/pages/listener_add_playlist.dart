@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/widgets/modal_button.dart';
 import 'package:masinqo/widgets/modal_heading.dart';
 import 'package:masinqo/widgets/modal_textfield.dart';
@@ -15,7 +16,7 @@ class AddPlaylistWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: AppColors.black,
       body: Center(
         child: SingleChildScrollView(
           child: Form(

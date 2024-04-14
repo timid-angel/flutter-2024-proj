@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/models/albums.dart';
+import 'package:masinqo/pages/listener_album.dart';
 import 'package:masinqo/widgets/listener_favorite_album.dart';
 
 class ListenerFavorites extends StatelessWidget {
@@ -32,7 +33,19 @@ class ListenerFavorites extends StatelessWidget {
                 crossAxisSpacing: 20,
                 childAspectRatio: 0.71,
                 children: favorites
-                    .map((a) => ListenerFavoriteAlbumCard(album: a))
+                    .map(
+                      (a) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AlbumWidget(album: a),
+                            ),
+                          );
+                        },
+                        child: ListenerFavoriteAlbumCard(album: a),
+                      ),
+                    )
                     .toList(),
               ),
             ),

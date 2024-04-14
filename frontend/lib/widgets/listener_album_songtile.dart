@@ -58,18 +58,20 @@ class AlbumSongTileWidget extends StatelessWidget {
                   )
                 ],
               ),
-              PopupMenuButton(
-                  icon: const Icon(Icons.add_circle),
-                  itemBuilder: (context) {
-                    return [
-                      const PopupMenuItem(child: Text('Playlist 1')),
-                      const PopupMenuItem(child: Text('Playlist 2')),
-                      const PopupMenuItem(child: Text('Playlist 3')),
-                      const PopupMenuItem(child: Text('Playlist 4')),
-                    ];
-                  }),
+
               // IconButton(onPressed: () {}, icon: const Icon(Icons.add_circle))
             ],
+          ),
+          PopupMenuButton(
+            icon: const Icon(Icons.add_circle),
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(child: Text('Playlist 1')),
+                const PopupMenuItem(child: Text('Playlist 2')),
+                const PopupMenuItem(child: Text('Playlist 3')),
+                const PopupMenuItem(child: Text('Playlist 4')),
+              ];
+            },
           ),
         ],
       ),

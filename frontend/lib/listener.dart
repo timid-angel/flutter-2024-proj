@@ -7,6 +7,7 @@ import 'package:masinqo/data/database.dart';
 import 'package:masinqo/data/listener_data.dart';
 import 'package:masinqo/data/playlist_data.dart';
 import 'package:masinqo/data/songs_data.dart';
+// import 'package:masinqo/login.dart';
 import 'package:masinqo/pages/listener.dart';
 
 void main() {
@@ -19,16 +20,15 @@ void main() {
     songs: songData,
   );
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: AppThemeData.listnerTheme,
-    home: DefaultTabController(
-      length: 3,
-      child: ListenerWidget(
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppThemeData.listnerTheme,
+      home: ListenerWidget(
         albums: db.albums,
         favorites: db.listeners[2].favorites,
         playlists: db.playlists,
       ),
     ),
-  ));
+  );
 }

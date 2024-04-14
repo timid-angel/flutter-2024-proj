@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/models/albums.dart';
+import 'package:masinqo/pages/listener_album.dart';
 import 'package:masinqo/widgets/listener_home_album.dart';
 
 class ListenerHome extends StatelessWidget {
@@ -29,8 +30,19 @@ class ListenerHome extends StatelessWidget {
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: albums.length,
-                itemBuilder: (context, index) =>
-                    ListenerHomeAlbumCard(album: albums[index]),
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AlbumWidget(album: albums[index]),
+                      ),
+                    );
+                  },
+                  child: ListenerHomeAlbumCard(
+                    album: albums[index],
+                  ),
+                ),
               ),
             ),
           ],

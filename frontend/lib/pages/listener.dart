@@ -23,30 +23,33 @@ class ListenerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.black,
-      endDrawer: const MenuDrawer(),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxScrolled) {
-          return [
-            const ListenerAppbar(),
-          ];
-        },
-        body: TabBarView(
-          children: [
-            ListenerHome(
-              albums: albums,
-            ),
-            ListenerFavorites(
-              favorites: favorites,
-            ),
-            ListenerLibrary(
-              playlists: playlists,
-            ),
-          ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        backgroundColor: AppColors.black,
+        endDrawer: const MenuDrawer(),
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxScrolled) {
+            return [
+              const ListenerAppbar(),
+            ];
+          },
+          body: TabBarView(
+            children: [
+              ListenerHome(
+                albums: albums,
+              ),
+              ListenerFavorites(
+                favorites: favorites,
+              ),
+              ListenerLibrary(
+                playlists: playlists,
+              ),
+            ],
+          ),
         ),
+        bottomNavigationBar: const BottomNavigationWidget(),
       ),
-      bottomNavigationBar: const BottomNavigationWidget(),
     );
   }
 }
