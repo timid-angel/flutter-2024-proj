@@ -8,12 +8,14 @@ class AppColors {
   static const greenish = Color.fromARGB(255, 1, 55, 71);
 
   static const artist1 = Color.fromRGBO(57, 220, 243, 1);
-  // static const artist2 = Color.fromRGBO(237, 129, 255, 1);
+  static const artist2 = Color.fromARGB(255, 12, 144, 188);
   // static const artist3 = Color.fromRGBO(237, 129, 255, 1);
+  static const artist4 = Color.fromARGB(70, 10, 100, 130);
 
   static const listener1 = Color.fromRGBO(237, 129, 255, 1);
-  static const listener2 = Color.fromRGBO(202, 87, 223, 1);
+  static const listener2 = Color.fromRGBO(204, 70, 228, 1);
   static const listener3 = Color.fromRGBO(74, 19, 84, 1);
+  static const listener4 = Color.fromRGBO(140, 46, 156, 1);
 
   static const fontColor = Color(0xF3F3F3FF);
 

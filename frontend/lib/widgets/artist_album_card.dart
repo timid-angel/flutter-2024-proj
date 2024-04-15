@@ -71,13 +71,6 @@ class AlbumCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                // child: AspectRatio(
-                //   aspectRatio: 0.5,
-                //   child: Image.asset(
-                //     imagePath,
-                //     fit: BoxFit.cover,
-                //   ),
-                // ),
               ),
               const SizedBox(width: 10),
               Expanded(

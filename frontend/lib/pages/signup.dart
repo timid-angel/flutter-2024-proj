@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'widgets/brand.dart';
-import 'core/theme/app_colors.dart';
-import 'widgets/custom_text_field.dart';
+import '../widgets/login_brand.dart';
+import '../core/theme/app_colors.dart';
+import '../widgets/admin_signup_textfield.dart';
 
-void main() {
-  runApp(const SignUp());
-}
-
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignupWidget extends StatefulWidget {
+  const SignupWidget({super.key});
   @override
   _ArtistSignUpPageState createState() => _ArtistSignUpPageState();
 }
 
-class _ArtistSignUpPageState extends State<SignUp> {
+class _ArtistSignUpPageState extends State<SignupWidget> {
   bool _isArtist = true;
 
   @override
@@ -57,7 +53,10 @@ class _ArtistSignUpPageState extends State<SignUp> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Brand(),
+                          const Brand(
+                            text: 'Masinqo',
+                            size: 50,
+                          ),
                           const SizedBox(height: 12),
                           CustomTextField(
                             hintText: 'Username',
@@ -96,7 +95,8 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(10),
                                       side: BorderSide(
                                         color: _isArtist
-                                            ? const Color.fromARGB(255, 12, 144, 188)
+                                            ? const Color.fromARGB(
+                                                255, 12, 144, 188)
                                             : Colors.white,
                                         width: 2,
                                       ),
@@ -109,7 +109,8 @@ class _ArtistSignUpPageState extends State<SignUp> {
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600,
                                     color: _isArtist
-                                        ? const Color.fromARGB(255, 12, 144, 188)
+                                        ? const Color.fromARGB(
+                                            255, 12, 144, 188)
                                         : Colors.white,
                                   ),
                                 ),

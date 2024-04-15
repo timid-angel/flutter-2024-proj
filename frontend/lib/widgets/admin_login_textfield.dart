@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/core/theme/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -8,13 +9,14 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: AppColors.fontColor),
       decoration: InputDecoration(
-        hintStyle: const TextStyle(color: Colors.white),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+        hintStyle: const TextStyle(color: Colors.grey),
         hintText: hintText,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
             color: Colors.white,
             width: 2,
           ),

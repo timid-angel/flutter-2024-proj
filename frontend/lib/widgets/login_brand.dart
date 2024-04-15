@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class Brand extends StatelessWidget {
   const Brand({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    required this.text,
+    required this.size,
+  });
+  final String text;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +19,12 @@ class Brand extends StatelessWidget {
           height: 135,
         ),
         const SizedBox(width: 10),
-        const Padding(
-          padding: EdgeInsets.only(bottom: 20),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20),
           child: Text(
-            'Masinqo',
+            text,
             style: TextStyle(
-              fontSize: 50,
+              fontSize: size,
               fontWeight: FontWeight.w400,
               color: Colors.white,
             ),
