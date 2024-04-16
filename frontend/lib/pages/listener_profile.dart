@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:masinqo/core/theme/app_colors.dart';
 import 'dart:io';
-import '../widgets/artist_drawer.dart';
-import '../widgets/artist_app_bar.dart';
-import '../data/artist_data.dart';
 
-class ArtistProfile extends StatefulWidget {
-  const ArtistProfile({super.key});
+class ListenerProfile extends StatefulWidget {
+  const ListenerProfile({super.key});
 
   @override
-  ArtistProfileState createState() => ArtistProfileState();
+  ListenerProfileState createState() => ListenerProfileState();
 }
 
-class ArtistProfileState extends State<ArtistProfile> {
+class ListenerProfileState extends State<ListenerProfile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _profileImagePath = 'assets/sample_profile_picture/weyes_blood.jpg';
 
@@ -20,8 +18,9 @@ class ArtistProfileState extends State<ArtistProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: ArtistAppBar(scaffoldKey: _scaffoldKey),
-      endDrawer: const ArtistDrawer(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: Colors.black,
       body: Center(
         child: Column(
@@ -35,8 +34,7 @@ class ArtistProfileState extends State<ArtistProfile> {
                   height: 160,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border:
-                        Border.all(color: const Color(0xFF39DCF3), width: 4),
+                    border: Border.all(color: AppColors.listener2, width: 4),
                   ),
                   child: ClipOval(
                     child: _buildProfileImageWidget(),
@@ -46,26 +44,27 @@ class ArtistProfileState extends State<ArtistProfile> {
                   bottom: 0,
                   left: 0,
                   child: IconButton(
-                    icon: const Icon(Icons.edit, color: Color(0xFF39DCF3)),
+                    icon: const Icon(Icons.edit, color: AppColors.listener2),
                     onPressed: _pickProfileImage,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 5),
-            Text(
-              artistData.last.name,
+            const Text(
+              'Weyes Blood',
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFFC5F8FF),
+              style: TextStyle(
+                color: Color.fromARGB(255, 238, 197, 255),
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
             const RoundedInputField(placeholder: "Enter new username"),
+            const SizedBox(height: 2),
             const RoundedInputField(placeholder: "Enter new Email"),
             const SizedBox(height: 20),
             const Text(
@@ -78,12 +77,13 @@ class ArtistProfileState extends State<ArtistProfile> {
             ),
             const SizedBox(height: 10),
             const RoundedInputField(placeholder: "Enter new password"),
+            const SizedBox(height: 2),
             const RoundedInputField(placeholder: "Confirm new Password"),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF39DCF3),
+                backgroundColor: AppColors.listener2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -93,13 +93,13 @@ class ArtistProfileState extends State<ArtistProfile> {
                 child: Text(
                   "Submit",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 75),
+            const SizedBox(height: 75)
           ],
         ),
       ),
@@ -146,7 +146,7 @@ class RoundedInputField extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: const Color(0xFF39DCF3), width: 1),
+        border: Border.all(color: AppColors.listener2, width: 1),
       ),
       child: TextField(
         style: const TextStyle(color: Colors.grey),

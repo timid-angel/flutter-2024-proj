@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
+import 'package:masinqo/pages/admin_home.dart';
 import 'package:masinqo/pages/login.dart';
 import 'package:masinqo/widgets/login_brand.dart';
 import 'package:masinqo/widgets/admin_login_button.dart';
@@ -82,7 +83,16 @@ class AdminLogin extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                CustomElevatedButton(onPressed: () {}, buttonText: 'Login'),
+                CustomElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => AdminHome()),
+                        ),
+                      );
+                    },
+                    buttonText: 'Login'),
               ],
             ),
           ],

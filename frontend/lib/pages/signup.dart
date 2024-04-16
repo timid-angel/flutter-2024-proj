@@ -14,15 +14,23 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Color filterColor = _isArtist
+        ? const Color.fromARGB(11, 0, 187, 212)
+        : const Color.fromARGB(11, 164, 53, 183);
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: AppColors.black,
         body: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/uncle.jpg'),
+              image: const AssetImage('assets/images/uncle.jpg'),
               fit: BoxFit.cover,
-              opacity: 0.25,
+              opacity: 0.2,
+              colorFilter: ColorFilter.mode(
+                filterColor,
+                BlendMode.color,
+              ),
             ),
           ),
           child: Stack(
@@ -77,7 +85,7 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
                             hintText: 'Confirm Password',
                             isArtist: _isArtist,
                           ),
-                          const SizedBox(height: 40),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
@@ -92,11 +100,10 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
                                       Colors.transparent),
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(5),
                                       side: BorderSide(
                                         color: _isArtist
-                                            ? const Color.fromARGB(
-                                                255, 12, 144, 188)
+                                            ? AppColors.artist2
                                             : Colors.white,
                                         width: 2,
                                       ),
@@ -104,13 +111,12 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
                                   ),
                                 ),
                                 child: Text(
-                                  'Signup as an Artist',
+                                  'Artist Signup',
                                   style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600,
                                     color: _isArtist
-                                        ? const Color.fromARGB(
-                                            255, 12, 144, 188)
+                                        ? AppColors.artist2
                                         : Colors.white,
                                   ),
                                 ),
@@ -126,28 +132,51 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
                                       Colors.transparent),
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(5),
                                       side: BorderSide(
                                         color: _isArtist
                                             ? Colors.white
-                                            : Colors.purple,
+                                            : AppColors.listener4,
                                         width: 2,
                                       ),
                                     ),
                                   ),
                                 ),
                                 child: Text(
-                                  'Signup as a Listener',
+                                  'Listener Signup',
                                   style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600,
                                     color: _isArtist
                                         ? Colors.white
-                                        : Colors.purple,
+                                        : const Color.fromARGB(
+                                            255, 193, 53, 217),
                                   ),
                                 ),
                               ),
                             ],
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                _isArtist
+                                    ? AppColors.artist2
+                                    : AppColors.listener4,
+                              ),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              'Signup',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
                           ),
                         ],
                       ),

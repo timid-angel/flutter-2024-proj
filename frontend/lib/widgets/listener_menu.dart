@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/pages/listener_profile.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -43,7 +44,13 @@ class MenuDrawer extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListenerProfile()),
+                );
+              },
             ),
             ListTile(
               leading: const Icon(

@@ -1,10 +1,10 @@
-import '../artist.dart';
+import '../pages/artist.dart';
 import 'package:flutter/material.dart';
 
 class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState>? scaffoldKey;
 
-  const ArtistAppBar({super.key, this.scaffoldKey}); 
+  const ArtistAppBar({super.key, this.scaffoldKey});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -17,8 +17,8 @@ class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Image.asset(
-            'assets/images/logo.png', 
-            height: 40, 
+            'assets/images/logo.png',
+            height: 40,
           ),
         ),
       ),
@@ -37,10 +37,9 @@ class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const ArtistHomePage()), 
+              MaterialPageRoute(builder: (context) => const ArtistHomePage()),
             );
           },
         ),

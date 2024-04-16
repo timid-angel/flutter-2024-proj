@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/data/album_data.dart';
-import './widgets/artist_drawer.dart';
-import 'widgets/artist_create_album_modal.dart';
-import 'widgets/artist_app_bar.dart';
-import 'widgets/artist_profile_section.dart';
-import 'widgets/artist_album_card.dart';
+import '../widgets/artist_drawer.dart';
+import '../widgets/artist_create_album_modal.dart';
+import '../widgets/artist_app_bar.dart';
+import '../widgets/artist_profile_section.dart';
+import '../widgets/artist_album_card.dart';
 
 void main() {
   runApp(const MyApp());

@@ -12,57 +12,59 @@ class AdminArtistMGT extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    width: 48,
-                    height: 48,
-                  ),
-                ),
-                const SizedBox(width: 1),
-                const Text(
-                  'Masinqo',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 125.0),
-                  child: IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () {}, // TODO: Search implementation coming up
-                    tooltip: 'Search',
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                      size: 32,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 48,
+                        height: 48,
+                      ),
                     ),
-                  ),
+                    const Text(
+                      'Masinqo',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        size: 30,
+                      ),
+                      onPressed: () {},
+                      tooltip: 'Search',
+                      color: Colors.white,
+                    ),
+                    const SizedBox(width: 5),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Icon(
+                        Icons.logout,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
             const SizedBox(height: 16),
             const Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Text(
                 'Artists',
                 style: TextStyle(
                   fontSize: 28,
                   color: Colors.white,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

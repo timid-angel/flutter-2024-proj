@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'widgets/admin_listener_mgt.dart';
-import 'widgets/admin_artist_mgt.dart';
-import 'widgets/background.dart';
-import 'widgets/admin_tabs.dart';
+import '../widgets/admin_listener_mgt.dart';
+import '../widgets/admin_artist_mgt.dart';
+import '../widgets/background.dart';
+import '../widgets/admin_tabs.dart';
 
-void main() {
-  runApp(const AdminScreen());
-}
-
-class AdminScreen extends StatelessWidget {
-  const AdminScreen({Key? key}) : super(key: key);
+class AdminHome extends StatelessWidget {
+  const AdminHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

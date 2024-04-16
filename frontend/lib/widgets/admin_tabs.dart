@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/core/theme/app_colors.dart';
 
 class AdminTabs extends StatelessWidget {
   const AdminTabs({super.key});
@@ -6,6 +7,8 @@ class AdminTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TabBar(
+      dividerHeight: 0,
+      indicatorColor: AppColors.listener2,
       tabs: [
         Tab(
           icon: Icon(

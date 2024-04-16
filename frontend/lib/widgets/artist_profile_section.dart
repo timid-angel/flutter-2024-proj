@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import '../data/artist_data.dart';
 
 class ArtistProfileSection extends StatelessWidget {
- const ArtistProfileSection({super.key});
-
+  const ArtistProfileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String artistName = artistData.last.name; 
+    String artistName = artistData.last.name;
 
     return SingleChildScrollView(
       child: Column(
@@ -21,12 +20,13 @@ class ArtistProfileSection extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: const Color(0xFF39DCF3), width: 4),
               image: const DecorationImage(
-                image: AssetImage('assets/sample_profile_picture/weyes_blood.jpg'),
+                image:
+                    AssetImage('assets/sample_profile_picture/weyes_blood.jpg'),
               ),
             ),
           ),
           const SizedBox(height: 5),
-         Text(
+          Text(
             artistName,
             textAlign: TextAlign.center,
             style: const TextStyle(
