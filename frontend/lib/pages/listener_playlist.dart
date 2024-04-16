@@ -50,6 +50,7 @@ class PlaylistWidget extends StatelessWidget {
                           addController: () {},
                           editController: () {},
                           deleteController: () {},
+                          playlistName: playlist.name,
                         ),
                         const Divider(height: 30, thickness: 2),
                         PlaylistTracksWidget(

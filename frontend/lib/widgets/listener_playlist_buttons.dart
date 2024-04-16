@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
+import './artist_delete_confirmation.dart';
+import '../widgets/artist_add_song_modal.dart';
+import 'listener_edit_playlist_modal.dart';
+import '../data/playlist_data.dart';
+
 
 class PlaylistButtonsWidget extends StatelessWidget {
   final dynamic Function() addController;
   final Function() editController;
   final dynamic Function() deleteController;
+  final String playlistName; 
 
   const PlaylistButtonsWidget({
-    super.key,
+    Key? key,
     required this.addController,
     required this.editController,
     required this.deleteController,
-  });
+    required this.playlistName, 
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,14 @@ class PlaylistButtonsWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(
-          onPressed: addController,
+           onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AddSongModal();
+              },
+            );
+          },
           child: const Row(
             children: [
               Icon(
@@ -35,7 +49,24 @@ class PlaylistButtonsWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: editController,
+          onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return EditPlaylistModal(
+                currentPlaylistName: playlistName,
+              );
+            },
+          ).then((newPlaylistName) {
+            if (newPlaylistName != null) {
+              print('New Playlist Name: $newPlaylistName');
+              // 
+            }
+          });
+        },
+
+
+
           child: const Row(
             children: [
               Icon(
@@ -51,7 +82,20 @@ class PlaylistButtonsWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: deleteController,
+            onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return DeleteConfirmationDialog(
+                  title: 'Are you sure you want to delete this playlist?',
+                  content: '',
+                  onConfirm: () {
+                    Navigator.of(context).pop();
+                  },
+                );
+              },
+            );
+          },
           child: const Row(
             children: [
               Icon(
