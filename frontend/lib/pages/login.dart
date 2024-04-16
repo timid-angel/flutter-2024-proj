@@ -129,79 +129,95 @@ class LoginWidgetState extends State<LoginWidget> {
                         size: 50,
                       ),
                       const SizedBox(height: 10),
-                      TextField(
-                        style: const TextStyle(
-                            color: AppColors.fontColor, fontSize: 17),
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 15),
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          hintText: _isArtist ? 'Artist Email' : 'User email',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: _isArtist
-                                  ? AppColors.artist2
-                                  : AppColors.listener4,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: _isArtist
-                                  ? AppColors.artist2
-                                  : AppColors.listener4,
-                              width: 2,
-                            ),
-                          ),
-                        ),
+                    TextField(
+  style: const TextStyle(
+    color: AppColors.fontColor,
+    fontSize: 17,
+  ),
+  decoration: InputDecoration(
+    contentPadding: const EdgeInsets.symmetric(
+      vertical: 12,
+      horizontal: 15,
+    ),
+    hintStyle: const TextStyle(color: Colors.grey),
+    hintText: _isArtist ? 'Artist Email' : 'User email',
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+        width: 2,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+        width: 2,
+      ),
+    ),
+    prefixIcon: Icon(
+      Icons.mail,
+      color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+    ),
+  ),
+),
+const SizedBox(height: 16),
+                TextField(
+                  style: const TextStyle(
+                    color: AppColors.fontColor,
+                    fontSize: 17,
+                  ),
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 15,
+                    ),
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    hintText: 'Password',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+                        width: 2,
                       ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        style: const TextStyle(
-                            color: AppColors.fontColor, fontSize: 17),
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 15),
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          hintText: 'Password',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: _isArtist
-                                  ? AppColors.artist2
-                                  : AppColors.listener4,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: _isArtist
-                                  ? AppColors.artist2
-                                  : AppColors.listener4,
-                              width: 2,
-                            ),
-                          ),
-                        ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+                        width: 2,
                       ),
-                      const SizedBox(height: 20),
-                      Row(
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: _isArtist ? AppColors.artist2 : AppColors.listener4,
+                    ),
+                  ),
+                ),
+                  const SizedBox(height: 20),
+                    Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          LoginOptionButton(
-                            isArtist: _isArtist,
-                            parent: this,
-                            primaryColor: AppColors.artist2,
-                            buttonText: 'Login as an Artist',
-                            toValue: true,
+                          Flexible( 
+                            child: LoginOptionButton(
+                              isArtist: _isArtist,
+                              parent: this,
+                              primaryColor: AppColors.artist2,
+                              buttonText: 'Login as an Artist',
+                              toValue: true,
+                              
+                            ),
                           ),
-                          LoginOptionButton(
-                            isArtist: _isArtist,
-                            parent: this,
-                            primaryColor: AppColors.listener2,
-                            buttonText: 'Login as a Listener',
-                            toValue: false,
+                          const SizedBox(width: 16),
+                          Flexible( 
+                            child: LoginOptionButton(
+                              isArtist: _isArtist,
+                              parent: this,
+                              primaryColor: AppColors.listener2,
+                              buttonText: 'Login as a Listener',
+                              toValue: false,
+
+                            ),
                           ),
                         ],
-                      ),
+                      )
+
                     ],
                   ),
                 ),

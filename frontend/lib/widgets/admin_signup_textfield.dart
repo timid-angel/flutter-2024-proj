@@ -4,12 +4,14 @@ import 'package:masinqo/core/theme/app_colors.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isArtist;
+  final Icon? prefixIcon; 
 
   const CustomTextField({
-    super.key,
+    Key? key, 
     required this.hintText,
     required this.isArtist,
-  });
+    this.prefixIcon, 
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class CustomTextField extends StatelessWidget {
             width: 2,
           ),
         ),
+        prefixIcon: prefixIcon, 
       ),
     );
   }
