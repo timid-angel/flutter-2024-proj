@@ -191,32 +191,32 @@ const SizedBox(height: 16),
                   ),
                 ),
                   const SizedBox(height: 20),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Flexible( 
-                            child: LoginOptionButton(
-                              isArtist: _isArtist,
-                              parent: this,
-                              primaryColor: AppColors.artist2,
-                              buttonText: 'Login as an Artist',
-                              toValue: true,
-                              
-                            ),
+                   Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Flexible(
+                          flex: 5,
+                          child: LoginOptionButton(
+                            isArtist: _isArtist,
+                            parent: this,
+                            primaryColor: AppColors.artist2,
+                            buttonText: 'Login as Artist',
+                            toValue: true,
                           ),
-                          const SizedBox(width: 16),
-                          Flexible( 
-                            child: LoginOptionButton(
-                              isArtist: _isArtist,
-                              parent: this,
-                              primaryColor: AppColors.listener2,
-                              buttonText: 'Login as a Listener',
-                              toValue: false,
-
-                            ),
+                        ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          flex: 6,
+                          child: LoginOptionButton(
+                            isArtist: _isArtist,
+                            parent: this,
+                            primaryColor: AppColors.listener2,
+                            buttonText: 'Login as Listener',
+                            toValue: false,
                           ),
-                        ],
-                      )
+                        ),
+                      ],
+                    )
 
                     ],
                   ),

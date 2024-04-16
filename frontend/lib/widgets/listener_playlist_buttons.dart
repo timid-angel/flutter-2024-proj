@@ -60,7 +60,7 @@ class PlaylistButtonsWidget extends StatelessWidget {
           ).then((newPlaylistName) {
             if (newPlaylistName != null) {
               print('New Playlist Name: $newPlaylistName');
-              // 
+
             }
           });
         },
