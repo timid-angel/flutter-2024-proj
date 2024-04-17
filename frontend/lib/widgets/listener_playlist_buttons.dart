@@ -11,12 +11,12 @@ class PlaylistButtonsWidget extends StatelessWidget {
   final String playlistName;
 
   const PlaylistButtonsWidget({
-    Key? key,
+    super.key,
     required this.addController,
     required this.editController,
     required this.deleteController,
     required this.playlistName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +56,7 @@ class PlaylistButtonsWidget extends StatelessWidget {
                 );
               },
             ).then((newPlaylistName) {
-              if (newPlaylistName != null) {
-                print('New Playlist Name: $newPlaylistName');
-              }
+              if (newPlaylistName != null) {}
             });
           },
           child: const Row(

@@ -4,15 +4,15 @@ class EditPlaylistModal extends StatefulWidget {
   final String currentPlaylistName;
 
   const EditPlaylistModal({
-    Key? key,
+    super.key,
     required this.currentPlaylistName,
-  }) : super(key: key);
+  });
 
   @override
-  _EditPlaylistModalState createState() => _EditPlaylistModalState();
+  EditPlaylistModalState createState() => EditPlaylistModalState();
 }
 
-class _EditPlaylistModalState extends State<EditPlaylistModal> {
+class EditPlaylistModalState extends State<EditPlaylistModal> {
   late String _newPlaylistName;
 
   @override

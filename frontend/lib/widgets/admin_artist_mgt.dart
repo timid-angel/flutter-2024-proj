@@ -28,34 +28,32 @@ class AdminArtistMGT extends StatelessWidget {
               child: ListView(
                 children: [
                   for (int i = 1; i <= 10; i++)
-                    Container(
-                      child: ListTile(
-                        minLeadingWidth: 72,
-                        minVerticalPadding: 20,
-                        leading: const CircleAvatar(
-                          foregroundImage: AssetImage(
-                            'assets/images/user.png',
+                    ListTile(
+                      minLeadingWidth: 72,
+                      minVerticalPadding: 20,
+                      leading: const CircleAvatar(
+                        foregroundImage: AssetImage(
+                          'assets/images/user.png',
+                        ),
+                      ),
+                      title: Text('Artist $i'),
+                      textColor: Colors.white,
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.block),
+                            onPressed: () {},
+                            tooltip: 'Ban',
+                            color: Colors.yellow,
                           ),
-                        ),
-                        title: Text('Artist $i'),
-                        textColor: Colors.white,
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.block),
-                              onPressed: () {},
-                              tooltip: 'Ban',
-                              color: Colors.yellow,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {},
-                              tooltip: 'Delete',
-                              color: Colors.red,
-                            ),
-                          ],
-                        ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {},
+                            tooltip: 'Delete',
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
                     ),
                 ],

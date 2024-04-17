@@ -16,7 +16,6 @@ class AdminLogin extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              // decoration: BoxDecoration(color: Colors.pink),
               margin: const EdgeInsets.only(top: 50.0, right: 10.0),
               child: ElevatedButton(
                 onPressed: () {
@@ -67,9 +66,15 @@ class AdminLogin extends StatelessWidget {
                           size: 40,
                         ),
                         SizedBox(height: 16),
-                        CustomTextField(hintText: 'Admin Email'),
+                        CustomTextField(
+                          hintText: 'Admin Email',
+                          prefixIcon: Icon(Icons.mail),
+                        ),
                         SizedBox(height: 16),
-                        CustomTextField(hintText: 'Password'),
+                        CustomTextField(
+                          hintText: 'Password',
+                          prefixIcon: Icon(Icons.lock),
+                        ),
                       ],
                     ),
                   ),
