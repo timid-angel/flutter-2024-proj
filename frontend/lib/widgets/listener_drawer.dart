@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:masinqo/pages/listener_profile.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -15,18 +14,24 @@ class MenuDrawer extends StatelessWidget {
             DrawerHeader(
               child: Column(
                 children: [
-                  Image.asset(
-                    "assets/images/user.png",
+                  Container(
+                    width: 100,
                     height: 100,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: const CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage('assets/images/user.png'),
+                    ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   const Text(
                     "Username",
+                    maxLines: 1,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 20,
                     ),
                   ),
                 ],
@@ -45,10 +50,9 @@ class MenuDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListenerProfile()),
+                  "/listener/profile",
                 );
               },
             ),
@@ -64,7 +68,12 @@ class MenuDrawer extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.popAndPushNamed(
+                  context,
+                  "/login",
+                );
+              },
             ),
           ],
         ),

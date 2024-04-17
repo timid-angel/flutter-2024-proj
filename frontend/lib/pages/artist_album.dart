@@ -1,39 +1,15 @@
 import 'package:flutter/material.dart';
-import '../widgets/artist_add_song_modal.dart';
-import '../widgets/artist_edit_album_modal.dart';
-import '../widgets/artist_drawer.dart';
-import '../widgets/artist_app_bar.dart';
-import '../widgets/artist_song_card.dart';
-import '../data/songs_data.dart';
-import 'package:masinqo/models/songs.dart';
-import '../widgets/artist_delete_confirmation.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: ArtistsAlbumPage(
-      firstSongImagePath: 'assets/jj.jpg',
-      albumName: '',
-      genre:'',
-      description:'',
-      songData: songData,
-    ),
-  ));
-}
+import 'package:masinqo/models/albums.dart';
+import '../../widgets/artist_add_song_modal.dart';
+import '../../widgets/artist_edit_album_modal.dart';
+import '../../widgets/artist_drawer.dart';
+import '../../widgets/artist_app_bar.dart';
+import '../../widgets/artist_song_card.dart';
+import '../../widgets/artist_delete_confirmation.dart';
 
 class ArtistsAlbumPage extends StatefulWidget {
-  final String firstSongImagePath;
-  final String albumName; 
-  final String genre;
-  final String description;
-  final List<Song> songData;  
-
   const ArtistsAlbumPage({
-    super.key, 
-    required this.firstSongImagePath,
-    required this.albumName,
-    required this.genre,
-    required this.description,
-    required this.songData,
+    super.key,
   });
 
   @override
@@ -42,10 +18,12 @@ class ArtistsAlbumPage extends StatefulWidget {
 
 class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  late Album album;
 
   @override
   Widget build(BuildContext context) {
-    
+    album = ModalRoute.of(context)!.settings.arguments as Album;
+
     return MaterialApp(
       home: Scaffold(
         key: _scaffoldKey,
@@ -63,7 +41,7 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.albumName,
+                      album.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 36.0,
@@ -72,7 +50,7 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                       maxLines: 2,
                     ),
                     Text(
-                      '0${widget.songData.length} Tracks',
+                      '0${album.songs.length} Tracks',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12.0,
@@ -87,14 +65,15 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                 height: MediaQuery.of(context).size.height * 0.2,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
-                  border: Border.all(color: const Color(0xFF39DCF3), width: 1.0),
+                  border:
+                      Border.all(color: const Color(0xFF39DCF3), width: 1.0),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
                   child: Stack(
                     children: [
                       Image.asset(
-                        widget.firstSongImagePath, 
+                        album.albumArt,
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
@@ -119,97 +98,102 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                   ),
                 ),
               ),
-             Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-  child: SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TextButton.icon(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const AddSongModal();
-              },
-            );
-          },
-          icon: const Icon(Icons.add_circle),
-          label: const Text(
-            'Add Song',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 12.0,
-            ),
-          ),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(const Color(0xFF39DCF3)),
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-              const CircleBorder(),
-            ),
-          ),
-        ),
-        TextButton.icon(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return EditSongModal(
-                  currentAlbumName: widget.albumName,
-                  currentGenre: widget.genre, 
-                  currentDescription: widget.description, 
-                  currentThumbnailPath: widget.firstSongImagePath,
-                );
-              },
-            );
-          },
-          icon: const Icon(Icons.edit),
-          label: const Text(
-            'Edit Album',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 12.0,
-            ),
-          ),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(const Color(0xFF39DCF3)),
-          ),
-        ),
-        TextButton.icon(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return DeleteConfirmationDialog(
-                  title: 'Are you sure you want to delete this album?',
-                  content: 'Deleting it will erase all of your songs.',
-                  onConfirm: () {
-                    Navigator.of(context).pop();
-                  },
-                );
-              },
-            );
-          },
-          icon: const Icon(Icons.delete),
-          label: const Text(
-            'Delete Album',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 12.0,
-            ),
-          ),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-          ),
-        ),
-      ],
-    ),
-  ),
-),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton.icon(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const AddSongModal();
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.add_circle),
+                        label: const Text(
+                          'Add Song',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFF39DCF3)),
+                          shape: MaterialStateProperty.all<OutlinedBorder>(
+                            const CircleBorder(),
+                          ),
+                        ),
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return EditSongModal(
+                                currentAlbumName: album.albumArt,
+                                currentGenre: album.genre,
+                                currentDescription: album.description,
+                                currentThumbnailPath: album.albumArt,
+                              );
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.edit),
+                        label: const Text(
+                          'Edit Album',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFF39DCF3)),
+                        ),
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return DeleteConfirmationDialog(
+                                title:
+                                    'Are you sure you want to delete this album?',
+                                content:
+                                    'Deleting it will erase all of your songs.',
+                                onConfirm: () {
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.delete),
+                        label: const Text(
+                          'Delete Album',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 20.0),
               const Padding(
                 padding: EdgeInsets.only(left: 16.0),
@@ -226,16 +210,17 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: widget.songData.length,
+                itemCount: album.songs.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
                     child: SongCard(
                       songNumber: index + 1,
-                      songName: widget.songData[index].name,
-                      artistName: widget.songData[index].album.artist.name,
-                      imagePath: widget.firstSongImagePath,
-                      songFilePath: widget.songData[index].filePath,
+                      songName: album.songs[index].name,
+                      artistName: album.songs[index].album.artist.name,
+                      imagePath: album.albumArt,
+                      songFilePath: album.songs[index].filePath,
                     ),
                   );
                 },

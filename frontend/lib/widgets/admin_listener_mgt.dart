@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masinqo/widgets/admin_header.dart';
 
 class AdminListenerMGT extends StatelessWidget {
   const AdminListenerMGT({super.key});
@@ -10,53 +11,7 @@ class AdminListenerMGT extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        width: 48,
-                        height: 48,
-                      ),
-                    ),
-                    const SizedBox(width: 1),
-                    const Text(
-                      'Masinqo',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.search,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                      tooltip: 'Search',
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 5),
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            const AdminHeader(),
             const SizedBox(height: 16),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),

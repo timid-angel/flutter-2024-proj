@@ -14,18 +14,15 @@ class SongCard extends StatelessWidget {
     required this.songName,
     required this.artistName,
     required this.imagePath,
-    required this.songFilePath, 
+    required this.songFilePath,
   });
 
   @override
   Widget build(BuildContext context) {
-
     final String lastArtistName = artistData.last.name;
 
     return GestureDetector(
-      onTap: () {
-        
-      },
+      onTap: () {},
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
@@ -55,7 +52,7 @@ class SongCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10.0),
-            Flexible( 
+            Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,11 +62,11 @@ class SongCard extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 18.0,
                     ),
-                    overflow: TextOverflow.ellipsis, 
-                    maxLines: 1, 
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   Text(
-                    lastArtistName, 
+                    lastArtistName,
                     style: const TextStyle(
                       color: Color.fromARGB(255, 189, 188, 188),
                       fontSize: 12.0,

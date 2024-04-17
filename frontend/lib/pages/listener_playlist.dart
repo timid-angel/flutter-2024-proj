@@ -7,17 +7,23 @@ import 'package:masinqo/widgets/listener_playlist_buttons.dart';
 import 'package:masinqo/widgets/listener_playlist_headline.dart';
 import 'package:masinqo/widgets/listener_playlist_songlist.dart';
 
-class PlaylistWidget extends StatelessWidget {
-  final Playlist playlist;
+class PlaylistWidget extends StatefulWidget {
   const PlaylistWidget({
     super.key,
-    required this.playlist,
   });
+
+  @override
+  State<PlaylistWidget> createState() => _PlaylistWidgetState();
+}
+
+class _PlaylistWidgetState extends State<PlaylistWidget> {
+  late Playlist playlist;
 
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
+    playlist = ModalRoute.of(context)!.settings.arguments as Playlist;
 
     return Scaffold(
       backgroundColor: AppColors.black,

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
-import 'package:masinqo/pages/admin_home.dart';
-import 'package:masinqo/pages/login.dart';
 import 'package:masinqo/widgets/login_brand.dart';
 import 'package:masinqo/widgets/admin_login_button.dart';
 import 'package:masinqo/widgets/admin_login_textfield.dart';
@@ -23,12 +20,7 @@ class AdminLogin extends StatelessWidget {
               margin: const EdgeInsets.only(top: 50.0, right: 10.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginWidget(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, "/login");
                 },
                 style: ElevatedButton.styleFrom(
                   padding:
@@ -85,12 +77,7 @@ class AdminLogin extends StatelessWidget {
                 const SizedBox(height: 20),
                 CustomElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => AdminHome()),
-                        ),
-                      );
+                      Navigator.pushNamed(context, "/admin/home");
                     },
                     buttonText: 'Login'),
               ],

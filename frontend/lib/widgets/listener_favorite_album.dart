@@ -42,7 +42,7 @@ class ListenerFavoriteAlbumCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.start,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 15.5,
+                    fontSize: 13.5,
                     fontWeight: FontWeight.w500,
                   ),
             ),

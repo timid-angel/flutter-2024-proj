@@ -3,21 +3,19 @@ import 'package:masinqo/core/theme/app_colors.dart';
 import './artist_delete_confirmation.dart';
 import '../widgets/artist_add_song_modal.dart';
 import 'listener_edit_playlist_modal.dart';
-import '../data/playlist_data.dart';
-
 
 class PlaylistButtonsWidget extends StatelessWidget {
   final dynamic Function() addController;
   final Function() editController;
   final dynamic Function() deleteController;
-  final String playlistName; 
+  final String playlistName;
 
   const PlaylistButtonsWidget({
     Key? key,
     required this.addController,
     required this.editController,
     required this.deleteController,
-    required this.playlistName, 
+    required this.playlistName,
   }) : super(key: key);
 
   @override
@@ -26,7 +24,7 @@ class PlaylistButtonsWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(
-           onPressed: () {
+          onPressed: () {
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -50,23 +48,19 @@ class PlaylistButtonsWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return EditPlaylistModal(
-                currentPlaylistName: playlistName,
-              );
-            },
-          ).then((newPlaylistName) {
-            if (newPlaylistName != null) {
-              print('New Playlist Name: $newPlaylistName');
-
-            }
-          });
-        },
-
-
-
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return EditPlaylistModal(
+                  currentPlaylistName: playlistName,
+                );
+              },
+            ).then((newPlaylistName) {
+              if (newPlaylistName != null) {
+                print('New Playlist Name: $newPlaylistName');
+              }
+            });
+          },
           child: const Row(
             children: [
               Icon(
@@ -82,7 +76,7 @@ class PlaylistButtonsWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () {
+          onPressed: () {
             showDialog(
               context: context,
               builder: (BuildContext context) {

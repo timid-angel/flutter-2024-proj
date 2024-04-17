@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
-import '../widgets/artist_drawer.dart';
-import '../widgets/artist_app_bar.dart';
-import '../data/artist_data.dart';
+import '../../widgets/artist_drawer.dart';
+import '../../widgets/artist_app_bar.dart';
+import '../../data/artist_data.dart';
 
 class ArtistProfile extends StatefulWidget {
   const ArtistProfile({super.key});

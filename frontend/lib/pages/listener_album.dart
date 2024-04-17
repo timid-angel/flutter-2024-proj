@@ -6,17 +6,21 @@ import 'package:masinqo/widgets/listener_album_headline.dart';
 import 'package:masinqo/widgets/listener_album_songlist.dart';
 import 'package:masinqo/widgets/listener_appbar.dart';
 
-class AlbumWidget extends StatelessWidget {
-  final Album album;
-  const AlbumWidget({
-    super.key,
-    required this.album,
-  });
+class AlbumWidget extends StatefulWidget {
+  const AlbumWidget({super.key});
+
+  @override
+  State<AlbumWidget> createState() => _AlbumWidgetState();
+}
+
+class _AlbumWidgetState extends State<AlbumWidget> {
+  late Album album;
 
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
+    album = ModalRoute.of(context)!.settings.arguments as Album;
 
     return Scaffold(
       backgroundColor: AppColors.black,

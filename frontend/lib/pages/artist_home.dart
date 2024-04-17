@@ -54,15 +54,7 @@ class ArtistHomePageState extends State<ArtistHomePage> {
                 ],
               ),
             ),
-            for (final album in albumData)
-              AlbumCard(
-                albumName: album.title,
-                tracks: album.songs.length,
-                genre: album.genre,
-                releaseDate: album.date.year.toString(),
-                description: album.description,
-                imagePath: album.albumArt,
-              ),
+            for (final album in albumData) AlbumCard(album: album),
             const SizedBox(height: 10),
           ],
         ),

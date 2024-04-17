@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import '../pages/artist_profile.dart'; 
 import '../data/artist_data.dart';
 
 class ArtistDrawer extends StatelessWidget {
- const ArtistDrawer({super.key});
-
+  const ArtistDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-   
     String artistName = artistData.last.name;
 
     return Drawer(
@@ -22,7 +19,7 @@ class ArtistDrawer extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                   const SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Container(
                     width: 100,
                     height: 100,
@@ -34,21 +31,22 @@ class ArtistDrawer extends StatelessWidget {
                       ),
                     ),
                     child: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/sample_profile_picture/weyes_blood.jpg'), 
+                      backgroundImage: AssetImage(
+                          'assets/sample_profile_picture/weyes_blood.jpg'),
                     ),
                   ),
                   const SizedBox(height: 10),
-                Text(
-            artistName,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 27,
-              fontWeight: FontWeight.bold,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
+                  Text(
+                    artistName,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                   const Divider(color: Color.fromARGB(255, 156, 153, 153)),
                 ],
               ),
@@ -60,13 +58,9 @@ class ArtistDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ArtistProfile()),
-                );
+                Navigator.pushNamed(context, "/artist/profile");
               },
             ),
-            const Divider(color: Color.fromARGB(255, 213, 211, 211)),
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.white),
               title: const Text(
@@ -74,10 +68,9 @@ class ArtistDrawer extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-               
+                Navigator.pushNamed(context, "/login");
               },
             ),
-            const Divider(color: Color.fromARGB(255, 213, 211, 211)),
           ],
         ),
       ),

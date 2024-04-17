@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/login_brand.dart';
-import '../core/theme/app_colors.dart';
-import '../widgets/admin_signup_textfield.dart';
+import '../../widgets/login_brand.dart';
+import '../../core/theme/app_colors.dart';
+import '../../widgets/admin_signup_textfield.dart';
 
 class SignupWidget extends StatefulWidget {
   const SignupWidget({super.key});
@@ -66,42 +66,49 @@ class _ArtistSignUpPageState extends State<SignupWidget> {
                             size: 50,
                           ),
                           const SizedBox(height: 12),
-                                                    CustomTextField(
-                              hintText: 'Username',
-                              isArtist: _isArtist,
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                              ),
+                          CustomTextField(
+                            hintText: 'Username',
+                            isArtist: _isArtist,
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
                             ),
-                            const SizedBox(height: 12),
-                            CustomTextField(
-                              hintText: 'Email',
-                              isArtist: _isArtist,
-                              prefixIcon: Icon(
-                                Icons.mail,
-                                color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                              ),
+                          ),
+                          const SizedBox(height: 12),
+                          CustomTextField(
+                            hintText: 'Email',
+                            isArtist: _isArtist,
+                            prefixIcon: Icon(
+                              Icons.mail,
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
                             ),
-                            const SizedBox(height: 12),
-                            CustomTextField(
-                              hintText: 'Password',
-                              isArtist: _isArtist,
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                              ),
+                          ),
+                          const SizedBox(height: 12),
+                          CustomTextField(
+                            hintText: 'Password',
+                            isArtist: _isArtist,
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
                             ),
-                            const SizedBox(height: 12),
-                            CustomTextField(
-                              hintText: 'Confirm Password',
-                              isArtist: _isArtist,
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                              ),
+                          ),
+                          const SizedBox(height: 12),
+                          CustomTextField(
+                            hintText: 'Confirm Password',
+                            isArtist: _isArtist,
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
                             ),
-
+                          ),
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,4 +1,3 @@
-import '../pages/artist.dart';
 import 'package:flutter/material.dart';
 
 class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -37,10 +36,7 @@ class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ArtistHomePage()),
-            );
+            Navigator.popAndPushNamed(context, "/artist/home");
           },
         ),
         IconButton(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
-import 'dart:io';
 
 class ListenerProfile extends StatefulWidget {
   const ListenerProfile({super.key});
@@ -12,7 +10,6 @@ class ListenerProfile extends StatefulWidget {
 
 class ListenerProfileState extends State<ListenerProfile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  String _profileImagePath = 'assets/sample_profile_picture/weyes_blood.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -32,27 +29,21 @@ class ListenerProfileState extends State<ListenerProfile> {
                 Container(
                   width: 160,
                   height: 160,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.listener2, width: 4),
                   ),
                   child: ClipOval(
-                    child: _buildProfileImageWidget(),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: IconButton(
-                    icon: const Icon(Icons.edit, color: AppColors.listener2),
-                    onPressed: _pickProfileImage,
+                    child: Image.asset(
+                      'assets/images/user.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 5),
             const Text(
-              'Weyes Blood',
+              'Username',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color.fromARGB(255, 238, 197, 255),
@@ -104,31 +95,6 @@ class ListenerProfileState extends State<ListenerProfile> {
         ),
       ),
     );
-  }
-
-  void _pickProfileImage() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-    );
-    if (result != null) {
-      setState(() {
-        _profileImagePath = result.files.single.path!;
-      });
-    }
-  }
-
-  Widget _buildProfileImageWidget() {
-    if (_profileImagePath.startsWith('assets/')) {
-      return Image.asset(
-        _profileImagePath,
-        fit: BoxFit.cover,
-      );
-    } else {
-      return Image.file(
-        File(_profileImagePath),
-        fit: BoxFit.cover,
-      );
-    }
   }
 }
 

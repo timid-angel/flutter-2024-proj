@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/models/playlist.dart';
-import 'package:masinqo/pages/listener_add_playlist.dart';
-import 'package:masinqo/pages/listener_playlist.dart';
 import 'package:masinqo/widgets/listener_library_playlist.dart';
 
 class ListenerLibrary extends StatelessWidget {
@@ -32,10 +30,7 @@ class ListenerLibrary extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AddPlaylistWidget()));
+                      Navigator.pushNamed(context, "/listener/new_playlist");
                     },
                     icon: const Icon(Icons.add_circle,
                         color: AppColors.listener2),
@@ -53,11 +48,10 @@ class ListenerLibrary extends StatelessWidget {
                     .map(
                       (p) => GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => PlaylistWidget(playlist: p),
-                            ),
+                            "/listener/playlist",
+                            arguments: p,
                           );
                         },
                         child: LibraryPlaylistCard(playlist: p),

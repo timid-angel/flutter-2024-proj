@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
-import '../data/songs_data.dart';
+import 'package:intl/intl.dart';
+import 'package:masinqo/models/albums.dart';
 import '../data/artist_data.dart';
-import '../pages/artist_album.dart';
 
 class AlbumCard extends StatelessWidget {
-  final String albumName;
-  final int tracks;
-  final String genre;
-  final String releaseDate;
-  final String description;
-  final String imagePath;
-
   const AlbumCard({
     super.key,
-    required this.albumName,
-    required this.tracks,
-    required this.genre,
-    required this.releaseDate,
-    required this.description,
-    required this.imagePath,
+    required this.album,
   });
+
+  final Album album;
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +18,10 @@ class AlbumCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => ArtistsAlbumPage(
-              albumName: albumName,
-              firstSongImagePath: imagePath,
-              genre: genre,
-              description: description,
-              songData: songData,
-            ),
-          ),
+          "/artist/album",
+          arguments: album,
         );
       },
       child: Padding(
@@ -63,7 +46,7 @@ class AlbumCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(imagePath),
+                      image: AssetImage(album.albumArt),
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
@@ -92,16 +75,18 @@ class AlbumCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildText('', _truncateText(albumName, 25),
+          _buildText('', _truncateText(album.title, 25),
               fontSize: 20, fontWeight: FontWeight.bold),
           const SizedBox(height: 5),
-          _buildText('Tracks:', tracks.toString()),
+          _buildText('Tracks:', album.songs.length.toString()),
           const SizedBox(height: 5),
-          _buildText('Genre:', _truncateText(genre, 14)),
+          _buildText('Genre:', _truncateText(album.genre, 14)),
           const SizedBox(height: 5),
-          _buildText('Release Date:', releaseDate),
+          _buildText('Release Date:',
+              "${DateFormat('MMMM').format(DateTime(0, album.date.month)).toString().substring(0, 3)}. ${album.date.day.toString()}, ${album.date.year.toString()}"),
           const SizedBox(height: 5),
-          _buildDescriptionText('Description:', _truncateText(description, 55)),
+          _buildDescriptionText(
+              'Description:', _truncateText(album.description, 55)),
         ],
       ),
     );

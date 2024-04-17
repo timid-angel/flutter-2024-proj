@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masinqo/pages/artist.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
-import 'package:masinqo/core/theme/app_theme_data.dart';
 import 'package:masinqo/data/admin_data.dart';
 import 'package:masinqo/data/album_data.dart';
 import 'package:masinqo/data/artist_data.dart';
@@ -9,9 +7,7 @@ import 'package:masinqo/data/database.dart';
 import 'package:masinqo/data/listener_data.dart';
 import 'package:masinqo/data/playlist_data.dart';
 import 'package:masinqo/data/songs_data.dart';
-import 'package:masinqo/pages/admin_login.dart';
-import 'package:masinqo/pages/listener.dart';
-import 'package:masinqo/pages/signup.dart';
+import 'package:masinqo/models/route_models/listener_homepage_data.dart';
 import 'package:masinqo/widgets/background.dart';
 import 'package:masinqo/widgets/login_brand.dart';
 import 'package:masinqo/widgets/login_options.dart';
@@ -42,32 +38,17 @@ class LoginWidgetState extends State<LoginWidget> {
 
   void loginHandler() {
     if (!_isArtist) {
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: AppThemeData.listnerTheme,
-            home: ListenerWidget(
-              albums: db.albums,
-              favorites: db.listeners[2].favorites,
-              playlists: db.playlists,
-            ),
-          ),
+        "/listener",
+        arguments: ListenerHomePageData(
+          albums: db.albums,
+          favorites: db.listeners[2].favorites,
+          playlists: db.playlists,
         ),
       );
     } else {
-      // Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: AppThemeData.listnerTheme,
-            home: const ArtistHomePage(),
-          ),
-        ),
-      );
+      Navigator.pushNamed(context, "/artist");
     }
   }
 
@@ -83,10 +64,7 @@ class LoginWidgetState extends State<LoginWidget> {
                 alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AdminLogin()));
+                    Navigator.pushNamed(context, "/admin");
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -129,106 +107,112 @@ class LoginWidgetState extends State<LoginWidget> {
                         size: 50,
                       ),
                       const SizedBox(height: 10),
-                    TextField(
-  style: const TextStyle(
-    color: AppColors.fontColor,
-    fontSize: 17,
-  ),
-  decoration: InputDecoration(
-    contentPadding: const EdgeInsets.symmetric(
-      vertical: 12,
-      horizontal: 15,
-    ),
-    hintStyle: const TextStyle(color: Colors.grey),
-    hintText: _isArtist ? 'Artist Email' : 'User email',
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-        width: 2,
-      ),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-        width: 2,
-      ),
-    ),
-    prefixIcon: Icon(
-      Icons.mail,
-      color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-    ),
-  ),
-),
-const SizedBox(height: 16),
-                TextField(
-                  style: const TextStyle(
-                    color: AppColors.fontColor,
-                    fontSize: 17,
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 15,
-                    ),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    hintText: 'Password',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                        width: 2,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                        width: 2,
-                      ),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: _isArtist ? AppColors.artist2 : AppColors.listener4,
-                    ),
-                  ),
-                ),
-                  const SizedBox(height: 20),
-                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 5,
-                          child: LoginOptionButton(
-                            isArtist: _isArtist,
-                            parent: this,
-                            primaryColor: AppColors.artist2,
-                            buttonText: 'Login as Artist',
-                            toValue: true,
+                      TextField(
+                        style: const TextStyle(
+                          color: AppColors.fontColor,
+                          fontSize: 17,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 15,
+                          ),
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          hintText: _isArtist ? 'Artist Email' : 'User email',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
+                              width: 2,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
+                              width: 2,
+                            ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.mail,
+                            color: _isArtist
+                                ? AppColors.artist2
+                                : AppColors.listener4,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          flex: 6,
-                          child: LoginOptionButton(
-                            isArtist: _isArtist,
-                            parent: this,
-                            primaryColor: AppColors.listener2,
-                            buttonText: 'Login as Listener',
-                            toValue: false,
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        style: const TextStyle(
+                          color: AppColors.fontColor,
+                          fontSize: 17,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 15,
+                          ),
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          hintText: 'Password',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
+                              width: 2,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: _isArtist
+                                  ? AppColors.artist2
+                                  : AppColors.listener4,
+                              width: 2,
+                            ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: _isArtist
+                                ? AppColors.artist2
+                                : AppColors.listener4,
                           ),
                         ),
-                      ],
-                    )
-
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 5,
+                            child: LoginOptionButton(
+                              isArtist: _isArtist,
+                              parent: this,
+                              primaryColor: AppColors.artist2,
+                              buttonText: 'Login as Artist',
+                              toValue: true,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            flex: 6,
+                            child: LoginOptionButton(
+                              isArtist: _isArtist,
+                              parent: this,
+                              primaryColor: AppColors.listener2,
+                              buttonText: 'Login as Listener',
+                              toValue: false,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignupWidget(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, "/signup");
                   },
                   style: TextButton.styleFrom(
                       textStyle: const TextStyle(
