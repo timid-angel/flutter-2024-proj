@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
-import 'artist_delete_confirmation.dart';
+import 'delete_confirmation_modal.dart';
 import 'listener_edit_playlist_modal.dart';
 
 class PlaylistButtonsWidget extends StatelessWidget {

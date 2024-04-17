@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/presentation/widgets/admin_header.dart';
+import 'delete_confirmation_modal.dart';
 
 class AdminArtistMGT extends StatelessWidget {
   const AdminArtistMGT({super.key});
@@ -49,7 +50,20 @@ class AdminArtistMGT extends StatelessWidget {
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete),
-                            onPressed: () {},
+                            onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return DeleteConfirmationDialog(
+                                  title:'Are you sure you want to delete this Artist?',
+                                  content:'This action will remove all of their information including their albums and songs.',
+                                  onConfirm: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                );
+                              },
+                            );
+                          },
                             tooltip: 'Delete',
                             color: Colors.red,
                           ),

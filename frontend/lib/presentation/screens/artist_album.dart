@@ -5,7 +5,7 @@ import '../widgets/artist_edit_album_modal.dart';
 import '../widgets/artist_drawer.dart';
 import '../widgets/artist_app_bar.dart';
 import '../widgets/artist_song_card.dart';
-import '../widgets/artist_delete_confirmation.dart';
+import '../widgets/delete_confirmation_modal.dart';
 
 class ArtistsAlbumPage extends StatefulWidget {
   const ArtistsAlbumPage({

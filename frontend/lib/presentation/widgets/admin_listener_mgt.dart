@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/presentation/widgets/admin_header.dart';
+import 'delete_confirmation_modal.dart';
 
 class AdminListenerMGT extends StatelessWidget {
   const AdminListenerMGT({super.key});
@@ -45,7 +46,22 @@ class AdminListenerMGT extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: const Icon(Icons.delete),
-                            onPressed: () {},
+                           onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return DeleteConfirmationDialog(
+                                    title:
+                                        'Are you sure you want to delete this Listener?',
+                                    content:
+                                        '',
+                                    onConfirm: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  );
+                                },
+                              );
+                            },
                             tooltip: 'Delete',
                             color: Colors.red,
                           ),
