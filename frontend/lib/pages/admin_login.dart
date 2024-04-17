@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/pages/admin_home.dart';
 import 'package:masinqo/pages/login.dart';
@@ -8,18 +7,17 @@ import 'package:masinqo/widgets/admin_login_button.dart';
 import 'package:masinqo/widgets/admin_login_textfield.dart';
 
 class AdminLogin extends StatelessWidget {
-  const AdminLogin({super.key});
+  const AdminLogin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: const BoxDecoration(color: AppColors.black),
+        decoration: BoxDecoration(color: AppColors.black),
         child: Stack(
           children: [
             Container(
-              // decoration: BoxDecoration(color: Colors.pink),
               margin: const EdgeInsets.only(top: 50.0, right: 10.0),
               child: ElevatedButton(
                 onPressed: () {
@@ -35,7 +33,7 @@ class AdminLogin extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                   backgroundColor: AppColors.artist4,
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
@@ -61,10 +59,10 @@ class AdminLogin extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                   ),
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.all(22.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,24 +73,31 @@ class AdminLogin extends StatelessWidget {
                           size: 40,
                         ),
                         SizedBox(height: 16),
-                        CustomTextField(hintText: 'Admin Email'),
+                        CustomTextField(
+                          hintText: 'Admin Email',
+                          prefixIcon: Icon(Icons.mail),
+                        ),
                         SizedBox(height: 16),
-                        CustomTextField(hintText: 'Password'),
+                        CustomTextField(
+                          hintText: 'Password',
+                          prefixIcon: Icon(Icons.lock),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 CustomElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => AdminHome()),
-                        ),
-                      );
-                    },
-                    buttonText: 'Login'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => AdminHome()),
+                      ),
+                    );
+                  },
+                  buttonText: 'Login',
+                ),
               ],
             ),
           ],

@@ -3,8 +3,6 @@ import 'package:masinqo/core/theme/app_colors.dart';
 import './artist_delete_confirmation.dart';
 import '../widgets/artist_add_song_modal.dart';
 import 'listener_edit_playlist_modal.dart';
-import '../data/playlist_data.dart';
-
 
 class PlaylistButtonsWidget extends StatelessWidget {
   final dynamic Function() addController;
