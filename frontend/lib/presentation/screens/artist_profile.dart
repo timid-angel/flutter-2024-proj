@@ -23,7 +23,8 @@ class ArtistProfileState extends State<ArtistProfile> {
       appBar: ArtistAppBar(scaffoldKey: _scaffoldKey),
       endDrawer: const ArtistDrawer(),
       backgroundColor: Colors.black,
-      body: Center(
+      body: SingleChildScrollView(
+        child:Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -103,6 +104,7 @@ class ArtistProfileState extends State<ArtistProfile> {
           ],
         ),
       ),
+        ),  
     );
   }
 

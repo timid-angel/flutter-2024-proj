@@ -55,8 +55,8 @@ class AddSongModalState extends State<AddSongModal> {
               decoration: const InputDecoration(
                 hintText: 'Enter song name',
                 hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF39DCF3)), 
                 ),
               ),
               style: const TextStyle(color: Colors.white),
@@ -93,7 +93,7 @@ class AddSongModalState extends State<AddSongModal> {
                   );
                 }
               },
-              child: const Text('Add Song'),
+              child: const Text('Add Song' ,style: TextStyle(color: Color(0xFF39DCF3) )),
             ),
           ],
         ),
