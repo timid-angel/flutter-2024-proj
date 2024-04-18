@@ -25,7 +25,7 @@ class ListenerProfileState extends State<ListenerProfile> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _buildProfileImage(),
+              profilePicture(),
               const SizedBox(height: 5),
               const Text(
                 'Username',
@@ -77,7 +77,7 @@ class ListenerProfileState extends State<ListenerProfile> {
     );
   }
 
-  Widget _buildProfileImage() {
+  Widget profilePicture() {
     return Stack(
       children: [
         Container(
