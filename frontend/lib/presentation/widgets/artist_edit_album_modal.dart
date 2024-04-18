@@ -88,6 +88,9 @@ Widget build(BuildContext context) {
               decoration: const InputDecoration(
                 hintText: 'Enter new album name',
                 hintStyle: TextStyle(color: Colors.grey),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF39DCF3)), 
+                ),
               ),
               style: const TextStyle(color: Colors.white),
             ),
@@ -96,6 +99,9 @@ Widget build(BuildContext context) {
               decoration: const InputDecoration(
                 hintText: 'Enter new genre',
                 hintStyle: TextStyle(color: Colors.grey),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF39DCF3)), 
+                ),
               ),
               style: const TextStyle(color: Colors.white),
             ),
@@ -104,6 +110,9 @@ Widget build(BuildContext context) {
               decoration: const InputDecoration(
                 hintText: 'Enter new description',
                 hintStyle: TextStyle(color: Colors.grey),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF39DCF3)), 
+                ),
               ),
               style: const TextStyle(color: Colors.white),
             ),
@@ -113,7 +122,8 @@ Widget build(BuildContext context) {
                 
                 Navigator.pop(context);
               },
-              child: const Text('Save Changes'),
+              child: const Text('Save Changes', style: TextStyle(color:Color(0xFF39DCF3)),),
+              
             ),
           ],
         ),
