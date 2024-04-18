@@ -20,79 +20,90 @@ class ListenerProfileState extends State<ListenerProfile> {
       ),
       backgroundColor: Colors.black,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: 160,
-                  height: 160,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildProfileImage(),
+              const SizedBox(height: 5),
+              const Text(
+                'Username',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color.fromARGB(255, 238, 197, 255),
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              const SizedBox(height: 45),
+              sectionTitle("Change Username"),
+              RoundedInputField(placeholder: "Enter new username"),
+              const SizedBox(height: 2),
+              RoundedInputField(placeholder: "Enter new Email"),
+              const SizedBox(height: 20),
+              sectionTitle("Change Password"),
+              const SizedBox(height: 10),
+              RoundedInputField(placeholder: "Enter new password"),
+              const SizedBox(height: 2),
+              RoundedInputField(placeholder: "Confirm new Password"),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.listener2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/user.png',
-                      fit: BoxFit.cover,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
                     ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            const Text(
-              'Username',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromARGB(255, 238, 197, 255),
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
               ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
-            const SizedBox(height: 25),
-            const RoundedInputField(placeholder: "Enter new username"),
-            const SizedBox(height: 2),
-            const RoundedInputField(placeholder: "Enter new Email"),
-            const SizedBox(height: 20),
-            const Text(
-              "Change password",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const RoundedInputField(placeholder: "Enter new password"),
-            const SizedBox(height: 2),
-            const RoundedInputField(placeholder: "Confirm new Password"),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.listener2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-                child: Text(
-                  "Submit",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 75)
-          ],
+              const SizedBox(height: 75)
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildProfileImage() {
+    return Stack(
+      children: [
+        Container(
+          width: 130,
+          height: 130,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/user.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget sectionTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
@@ -101,7 +112,8 @@ class ListenerProfileState extends State<ListenerProfile> {
 class RoundedInputField extends StatelessWidget {
   final String placeholder;
 
-  const RoundedInputField({super.key, required this.placeholder});
+  const RoundedInputField({Key? key, required this.placeholder})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
