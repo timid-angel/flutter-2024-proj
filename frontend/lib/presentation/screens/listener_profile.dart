@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
+import 'package:masinqo/presentation/widgets/profile_mgmt-section_title.dart';
 
 class ListenerProfile extends StatefulWidget {
   const ListenerProfile({super.key});
@@ -39,16 +40,16 @@ class ListenerProfileState extends State<ListenerProfile> {
                 maxLines: 1,
               ),
               const SizedBox(height: 45),
-              sectionTitle("Change Username"),
-              RoundedInputField(placeholder: "Enter new username"),
+              const SectionTitle(title: 'Change Username'),
+              const RoundedInputField(placeholder: "Enter new username"),
               const SizedBox(height: 2),
-              RoundedInputField(placeholder: "Enter new Email"),
+              const RoundedInputField(placeholder: "Enter new Email"),
               const SizedBox(height: 20),
-              sectionTitle("Change Password"),
+              const SectionTitle(title: 'Change Password'),
               const SizedBox(height: 10),
-              RoundedInputField(placeholder: "Enter new password"),
+              const RoundedInputField(placeholder: "Enter new password"),
               const SizedBox(height: 2),
-              RoundedInputField(placeholder: "Confirm new Password"),
+              const RoundedInputField(placeholder: "Confirm new Password"),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {},
@@ -94,17 +95,6 @@ class ListenerProfileState extends State<ListenerProfile> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget sectionTitle(String title) {
-    return Text(
-      title,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
     );
   }
 }
