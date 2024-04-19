@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:masinqo/presentation/widgets/profile_mgmt-section_title.dart';
 import 'dart:io';
 import '../widgets/artist_drawer.dart';
 import '../widgets/artist_app_bar.dart';
@@ -24,87 +25,81 @@ class ArtistProfileState extends State<ArtistProfile> {
       endDrawer: const ArtistDrawer(),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child:Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: 160,
-                  height: 160,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border:
-                        Border.all(color: const Color(0xFF39DCF3), width: 4),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: 160,
+                    height: 160,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border:
+                          Border.all(color: const Color(0xFF39DCF3), width: 4),
+                    ),
+                    child: ClipOval(
+                      child: profilePicture(),
+                    ),
                   ),
-                  child: ClipOval(
-                    child: _buildProfileImageWidget(),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: IconButton(
+                      icon: const Icon(Icons.edit, color: Color(0xFF39DCF3)),
+                      onPressed: _pickProfileImage,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Text(
+                artistData.last.name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xFFC5F8FF),
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              const SizedBox(height: 20),
+              const SectionTitle(title: 'Change Username'),
+              const RoundedInputField(placeholder: "Enter new username"),
+              const RoundedInputField(placeholder: "Enter new Email"),
+              const SizedBox(height: 20),
+              const SectionTitle(title: 'Change Password'),
+              const SizedBox(height: 10),
+              const RoundedInputField(placeholder: "Enter new password"),
+              const RoundedInputField(placeholder: "Confirm new Password"),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF39DCF3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: IconButton(
-                    icon: const Icon(Icons.edit, color: Color(0xFF39DCF3)),
-                    onPressed: _pickProfileImage,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Text(
-              artistData.last.name,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFFC5F8FF),
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
-            const SizedBox(height: 20),
-            const RoundedInputField(placeholder: "Enter new username"),
-            const RoundedInputField(placeholder: "Enter new Email"),
-            const SizedBox(height: 20),
-            const Text(
-              "Change password",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const RoundedInputField(placeholder: "Enter new password"),
-            const RoundedInputField(placeholder: "Confirm new Password"),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF39DCF3),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-                child: Text(
-                  "Submit",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 75),
-          ],
+              const SizedBox(height: 75),
+            ],
+          ),
         ),
       ),
-        ),  
     );
   }
 
@@ -119,7 +114,7 @@ class ArtistProfileState extends State<ArtistProfile> {
     }
   }
 
-  Widget _buildProfileImageWidget() {
+  Widget profilePicture() {
     if (_profileImagePath.startsWith('assets/')) {
       return Image.asset(
         _profileImagePath,
