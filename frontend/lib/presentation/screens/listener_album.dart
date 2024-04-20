@@ -5,6 +5,7 @@ import 'package:masinqo/presentation/widgets/listener_album_albumart.dart';
 import 'package:masinqo/presentation/widgets/listener_album_headline.dart';
 import 'package:masinqo/presentation/widgets/listener_album_songlist.dart';
 import 'package:masinqo/presentation/widgets/listener_appbar.dart';
+import 'package:masinqo/presentation/widgets/listener_drawer.dart';
 
 class AlbumWidget extends StatefulWidget {
   const AlbumWidget({super.key});
@@ -59,7 +60,7 @@ class _AlbumWidgetState extends State<AlbumWidget> {
           ],
         ),
       ),
-      endDrawer: const Drawer(),
+      endDrawer: const ListenerDrawer(),
     );
   }
 }

@@ -36,7 +36,7 @@ class _ListenerWidgetState extends State<ListenerWidget> {
       length: 3,
       child: Scaffold(
         backgroundColor: AppColors.black,
-        endDrawer: const MenuDrawer(),
+        endDrawer: const ListenerDrawer(),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxScrolled) {
             return [

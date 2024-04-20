@@ -12,6 +12,7 @@ class ArtistAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black,
+      scrolledUnderElevation: 0.0,
       leading: GestureDetector(
         child: Padding(
           padding: const EdgeInsets.all(5.0),

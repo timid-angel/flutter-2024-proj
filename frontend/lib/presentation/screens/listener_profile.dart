@@ -39,7 +39,7 @@ class ListenerProfileState extends State<ListenerProfile> {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),
-              const SizedBox(height: 45),
+              const SizedBox(height: 20),
               const SectionTitle(title: 'Change Username'),
               const RoundedInputField(placeholder: "Enter new username"),
               const SizedBox(height: 2),

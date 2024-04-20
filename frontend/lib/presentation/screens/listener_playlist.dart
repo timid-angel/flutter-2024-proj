@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:masinqo/core/theme/app_colors.dart';
 import 'package:masinqo/models/playlist.dart';
 import 'package:masinqo/presentation/widgets/listener_appbar.dart';
+import 'package:masinqo/presentation/widgets/listener_drawer.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_albumart.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_buttons.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_headline.dart';
@@ -71,7 +72,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
           ],
         ),
       ),
-      endDrawer: const Drawer(),
+      endDrawer: const ListenerDrawer(),
     );
   }
 }

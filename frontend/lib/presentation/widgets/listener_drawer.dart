@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MenuDrawer extends StatelessWidget {
-  const MenuDrawer({super.key});
+class ListenerDrawer extends StatelessWidget {
+  const ListenerDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
