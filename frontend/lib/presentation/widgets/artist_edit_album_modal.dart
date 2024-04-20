@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
-import 'dart:io';
-
-
 class EditSongModal extends StatefulWidget {
   final String currentAlbumName;
   final String currentGenre;
@@ -21,24 +17,14 @@ class EditSongModal extends StatefulWidget {
 }
 
 class EditSongModalState extends State<EditSongModal> {
-  late String _newThumbnailPath;
+
 
 @override
 void initState() {
   super.initState();
-  _newThumbnailPath = widget.currentThumbnailPath;
+  
 }
-
-
-
-Future<void> _pickNewThumbnail() async {
-  final result = await FilePicker.platform.pickFiles(type: FileType.image);
-  if (result != null) {
-    setState(() {
-      _newThumbnailPath = result.files.single.path!;
-    });
-  }
-}@override
+@override
 Widget build(BuildContext context) {
   return Dialog(
     backgroundColor: Colors.black,
@@ -67,15 +53,8 @@ Widget build(BuildContext context) {
             const SizedBox(height: 10.0),
 
             GestureDetector(
-              onTap: _pickNewThumbnail,
-              child: _newThumbnailPath.isNotEmpty && File(_newThumbnailPath).existsSync()
-                  ? Image.file(
-                      File(_newThumbnailPath),
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.2,
-                    )
-                  : Image.asset(
+              onTap: (){},
+              child: Image.asset(
                       widget.currentThumbnailPath,
                       fit: BoxFit.cover,
                       width: double.infinity,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+
 
 class CreateAlbumModal extends StatefulWidget {
   const CreateAlbumModal({super.key});
@@ -22,25 +21,6 @@ class CreateAlbumModalState extends State<CreateAlbumModal> {
     _genreController = TextEditingController();
     _descriptionController = TextEditingController();
   }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _genreController.dispose();
-    _descriptionController.dispose();
-    super.dispose();
-  }
-
-  void _pickImage() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
-      setState(() {
-        _thumbnailPath = pickedImage.path;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -117,7 +97,7 @@ class CreateAlbumModalState extends State<CreateAlbumModal> {
             ),
               const SizedBox(height: 10),
               TextButton(
-                onPressed: _pickImage,
+                onPressed: (){},
                 child: Text(
                   _thumbnailPath != null
                       ? 'Change Thumbnail'
@@ -126,12 +106,7 @@ class CreateAlbumModalState extends State<CreateAlbumModal> {
                 ),
               ),
               if (_thumbnailPath != null)
-                Image.file(
-                  File(_thumbnailPath!),
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
-                ),
+              
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {},
