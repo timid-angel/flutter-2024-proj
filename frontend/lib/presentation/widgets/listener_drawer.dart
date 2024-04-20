@@ -15,8 +15,8 @@ class ListenerDrawer extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 98,
+                    height: 98,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
@@ -31,7 +31,7 @@ class ListenerDrawer extends StatelessWidget {
                     maxLines: 1,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 19,
                     ),
                   ),
                 ],

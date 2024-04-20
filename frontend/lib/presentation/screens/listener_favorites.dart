@@ -30,7 +30,7 @@ class ListenerFavorites extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
-                childAspectRatio: 0.71,
+                childAspectRatio: 0.68,
                 children: favorites
                     .map(
                       (a) => GestureDetector(
