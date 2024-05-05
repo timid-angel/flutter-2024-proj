@@ -1,73 +1,30 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Masinko - a REST API for a music retail service
+**Final project for Web Programming**
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Group Members - Section 1
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- Lidiya Mamo Kibret - **UGR/2485/14**   |   _Lidiya-MK_
+- Mati Milkessa Ensermu - **UGR/0949/14**   |   _RealMati_
+- Natanim Kemal Abdela - **UGR/4648/14**   |   _Natanim-Kemal_
+- Nathan Mesfin Shiferaw - **UGR/0534/14**   |   _timid-angel_
 
-## Description
+### Description
+Masinko is a web-based music-sharing platform where artists can upload their works to a public platform where tracks are downloaded and rated by a general audience. The platform is motivated by the current musical atmosphere in which big streaming platforms continue to rise while pushing the most established musicians and bands without making special provisions for underground/local scenes. Music is a big part of culture, and we believe that the general trend toward Western
+ideologies should not belittle the identity of any nation. This platform aims to uplift the discoverability of independent Ethiopian artists so that they may openly release their works to a platform that provides an even playing field regardless of their popularity or past achievements.
+### Role Based CRUD and API Operations Summary
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Artists:
+- Create an account/ login with an existing account
+- Create albums with their own album arts
+- Access those albums to add songs
+- Update the details of an album after its creation
+- Delete pre-existing albums
 
-## Installation
+Admins:
+- Access the list of artists in the system
+- Update artist information, including login credentials
+- Delete artist accounts and all their created albums and songs
 
-```bash
-$ npm install
-```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+### Why MongoDB? A justification for using a Non-Relational Database for this Project
+There are many quirks that lead us to the decision of using MongoDB. The powerful Mongoose ORM library is among them, but the primary reason lies in the way non-relational databases work and how responsive they are to changes. Due to SQL's rigid schema structure, it is hard to accommodate a flexible database. This project, dealing with albums, album arts and audio files, benefits from having flexibility in its schema definitions as there will inevitable be cases where a certain input field is omitted and must be replaced by a placeholder. With MongoDB and Mongoose, it is even possible to leave certain key fields empty and handle them when they are trying to be accessed. Moreover, because the development of this API followed an incremental approach with several overhauls along the way. The flexibility in the DBMS provided more leeway for structural changes when they were required, and it was this exact reason that drove the team to make this decision.
