@@ -6,12 +6,10 @@ import { ArtistSchema } from './schema/artist.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { JWTStrategy } from './jwt-strategy';
 import { AdminSchema } from './schema/admin.schema';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
@@ -24,7 +22,6 @@ import { AdminSchema } from './schema/admin.schema';
     MongooseModule.forFeature([{ name: 'Artist', schema: ArtistSchema }, { name: 'Admin', schema: AdminSchema }])
   ],
   controllers: [AuthController],
-  providers: [AuthService, JWTStrategy],
-  exports: [JWTStrategy, PassportModule]
+  providers: [AuthService]
 })
 export class AuthModule { }

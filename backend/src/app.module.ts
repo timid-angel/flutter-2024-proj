@@ -8,7 +8,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ArtistsModule } from './artists/artists.module';
-import { AuthMiddleware } from './auth/auth.middleware';
 
 @Module({
   imports: [
@@ -25,8 +24,5 @@ import { AuthMiddleware } from './auth/auth.middleware';
   providers: [AppService],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    // Apply the AuthMiddleware to all routes in the 'albums' path
-    consumer.apply(AuthMiddleware).forRoutes('albums');
-  }
+  configure(consumer: MiddlewareConsumer) {}
 }

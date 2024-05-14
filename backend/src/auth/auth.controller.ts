@@ -8,60 +8,93 @@ import { AdminSignUpDto } from './dto/signup-admin.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private authService: AuthService
-    ) { }
+  constructor(private authService: AuthService) {}
 
-    @Get('/login')
-    @Render("login")
-    getLoginPage() { }
+  // pages
+  @Get('/login')
+  @Render('login')
+  getLoginPage() {}
 
-    @Get('/signup')
-    @Render("signup")
-    getSignupPage() { }
+  @Get('/signup')
+  @Render('signup')
+  getSignupPage() {}
 
-    @Post('/signup')
-    signUp(@Body() reqBody: SignUpDto): Promise<{ token: string }> {
-        return this.authService.signUp(reqBody)
+  @Get('/admin/login')
+  @Render('adminLogin')
+  getAdminLoginPage() {
+    return {};
+  }
+
+  @Get('/admin/signup')
+  @Render('adminSignup')
+  getAdminSignupPage() {
+    return {};
+  }
+
+  // artist
+  @Post('/artist/signup')
+  artistSignUp(@Body() reqBody: SignUpDto): Promise<{ token: string }> {
+    return this.authService.artistSignUp(reqBody);
+  }
+
+  @Post('/artist/login')
+  async artistLogin(@Body() reqBody: LogInDto, @Res() res: Response) {
+    const { token } = await this.authService.artistLogIn(reqBody);
+    console.log(token);
+    if (token) {
+      res
+        .cookie('accessToken', token, {
+          httpOnly: true,
+          maxAge: 24 * 3600 * 1000,
+        })
+        .sendStatus(200);
+    } else {
+      res.cookie('accessToken', '', { maxAge: 1 }).sendStatus(409);
     }
+  }
 
-    @Post('/login')
-    async logIn(@Body() reqBody: LogInDto, @Res() res: Response) {
-        const { token } = await this.authService.logIn(reqBody)
-        console.log(token)
-        if (token) {
-            res.cookie('accessToken', token, { httpOnly: true, maxAge: 24 * 3600 * 1000 }).sendStatus(200)
-        } else {
-            res.cookie('accessToken', "", { maxAge: 1 }).sendStatus(409)
-        }
-    }
+  // listener
+  @Post('/listener/signup')
+  listenerSignUp(@Body() reqBody: SignUpDto): Promise<{ token: string }> {
+    return this.authService.listenerSignUp(reqBody);
+  }
 
-    @Get('/admin/login')
-    @Render("adminLogin")
-    getAdminLoginPage() {
-        return {}
+  @Post('/listener/login')
+  async listenerLogin(@Body() reqBody: LogInDto, @Res() res: Response) {
+    const { token } = await this.authService.listenerLogIn(reqBody);
+    console.log(token);
+    if (token) {
+      res
+        .cookie('accessToken', token, {
+          httpOnly: true,
+          maxAge: 24 * 3600 * 1000,
+        })
+        .sendStatus(200);
+    } else {
+      res.cookie('accessToken', '', { maxAge: 1 }).sendStatus(409);
     }
+  }
 
-    @Get('/admin/signup')
-    @Render("adminSignup")
-    getAdminSignupPage() {
-        return {}
-    }
+  // admin
+  @Post('/admin/signup')
+  adminSignUp(@Body() reqBody: AdminSignUpDto): Promise<{ token: string }> {
+    return this.authService.adminSignUp(reqBody);
+  }
 
-    @Post('/admin/signup')
-    adminSignUp(@Body() reqBody: AdminSignUpDto): Promise<{ token: string }> {
-        return this.authService.adminSignUp(reqBody)
+  @Post('/admin/login')
+  async adminLogIn(@Body() reqBody: LogInDto, @Res() res: Response) {
+    const { token } = await this.authService.adminLogIn(reqBody);
+    console.log(token);
+    if (token) {
+      res
+        .cookie('accessToken', token, {
+          httpOnly: true,
+          maxAge: 24 * 3600 * 1000,
+        })
+        .sendStatus(200);
+    } else {
+      res.cookie('accessToken', '', { maxAge: 1 }).sendStatus(409);
     }
-
-    @Post('/admin/login')
-    async adminLogIn(@Body() reqBody: LogInDto, @Res() res: Response) {
-        const { token } = await this.authService.adminLogIn(reqBody)
-        console.log(token)
-        if (token) {
-            res.cookie('accessToken', token, { httpOnly: true, maxAge: 24 * 3600 * 1000 }).sendStatus(200)
-        } else {
-            res.cookie('accessToken', "", { maxAge: 1 }).sendStatus(409)
-        }
-        return
-    }
+    return;
+  }
 }

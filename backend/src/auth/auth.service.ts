@@ -11,59 +11,86 @@ import { AdminSignUpDto } from './dto/signup-admin.dto';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        @InjectModel(Artist.name)
-        private artistModel: Model<Artist>,
-        @InjectModel(Admin.name)
-        private adminModel: Model<Admin>,
-        private jwtService: JwtService
-    ) { }
+  constructor(
+    @InjectModel(Artist.name)
+    private artistModel: Model<Artist>,
+    @InjectModel(Admin.name)
+    private adminModel: Model<Admin>,
+    private jwtService: JwtService,
+  ) {}
 
-    async signUp(reqBody: SignUpDto): Promise<{ token: string }> {
-        const artistObj = { ...reqBody }
-        const hashedPwd = await bcrypt.hash(reqBody.password, 10)
-        artistObj.password = hashedPwd
-        const artist = await this.artistModel.create(artistObj)
-        console.log(artist)
-        const accessToken = this.jwtService.sign({ id: artist._id, role: 1 })
-        return { token: accessToken }
-    }
+  // artist
+  async artistSignUp(reqBody: SignUpDto): Promise<{ token: string }> {
+    const artistObj = { ...reqBody };
+    const hashedPwd = await bcrypt.hash(reqBody.password, 10);
+    artistObj.password = hashedPwd;
+    const artist = await this.artistModel.create(artistObj);
+    console.log(artist);
+    const accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+    return { token: accessToken };
+  }
 
-    async logIn(reqBody: LogInDto): Promise<{ token: string }> {
-        const accObj = { ...reqBody }
-        const artist = await this.artistModel.findOne({ email: accObj.email })
-        if (!artist) {
-            throw new UnauthorizedException('Invalid email or password')
-        }
-        const valid = await bcrypt.compare(accObj.password, artist.password)
-        let accessToken: string
-        if (valid) {
-            accessToken = this.jwtService.sign({ id: artist._id, role: 1 })
-        }
-        return { token: accessToken }
+  async artistLogIn(reqBody: LogInDto): Promise<{ token: string }> {
+    const accObj = { ...reqBody };
+    const artist = await this.artistModel.findOne({ email: accObj.email });
+    if (!artist) {
+      throw new UnauthorizedException('Invalid email or password');
     }
+    const valid = await bcrypt.compare(accObj.password, artist.password);
+    let accessToken: string;
+    if (valid) {
+      accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+    }
+    return { token: accessToken };
+  }
 
-    async adminSignUp(reqBody: AdminSignUpDto): Promise<{ token: string }> {
-        const adminObj = { ...reqBody }
-        const hashedPwd = await bcrypt.hash(reqBody.password, 10)
-        adminObj.password = hashedPwd
-        const admin = await this.adminModel.create(adminObj)
-        console.log(admin)
-        const accessToken = this.jwtService.sign({ id: admin._id, role: 0 })
-        return { token: accessToken }
-    }
+  // listener
+  async listenerSignUp(reqBody: SignUpDto): Promise<{ token: string }> {
+    const artistObj = { ...reqBody };
+    const hashedPwd = await bcrypt.hash(reqBody.password, 10);
+    artistObj.password = hashedPwd;
+    const artist = await this.artistModel.create(artistObj);
+    console.log(artist);
+    const accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+    return { token: accessToken };
+  }
 
-    async adminLogIn(reqBody: LogInDto): Promise<{ token: string }> {
-        const accObj = { ...reqBody }
-        const admin = await this.adminModel.findOne({ email: accObj.email })
-        if (!admin) {
-            throw new UnauthorizedException('Invalid email or password')
-        }
-        const valid = await bcrypt.compare(accObj.password, admin.password)
-        let accessToken: string
-        if (valid) {
-            accessToken = this.jwtService.sign({ id: admin._id, role: 0 })
-        }
-        return { token: accessToken }
+  async listenerLogIn(reqBody: LogInDto): Promise<{ token: string }> {
+    const accObj = { ...reqBody };
+    const artist = await this.artistModel.findOne({ email: accObj.email });
+    if (!artist) {
+      throw new UnauthorizedException('Invalid email or password');
     }
+    const valid = await bcrypt.compare(accObj.password, artist.password);
+    let accessToken: string;
+    if (valid) {
+      accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+    }
+    return { token: accessToken };
+  }
+
+  // admin
+  async adminSignUp(reqBody: AdminSignUpDto): Promise<{ token: string }> {
+    const adminObj = { ...reqBody };
+    const hashedPwd = await bcrypt.hash(reqBody.password, 10);
+    adminObj.password = hashedPwd;
+    const admin = await this.adminModel.create(adminObj);
+    console.log(admin);
+    const accessToken = this.jwtService.sign({ id: admin._id, role: 0 });
+    return { token: accessToken };
+  }
+
+  async adminLogIn(reqBody: LogInDto): Promise<{ token: string }> {
+    const accObj = { ...reqBody };
+    const admin = await this.adminModel.findOne({ email: accObj.email });
+    if (!admin) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+    const valid = await bcrypt.compare(accObj.password, admin.password);
+    let accessToken: string;
+    if (valid) {
+      accessToken = this.jwtService.sign({ id: admin._id, role: 0 });
+    }
+    return { token: accessToken };
+  }
 }
