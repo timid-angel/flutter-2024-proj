@@ -8,6 +8,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { LogInDto } from './dto/login.dto';
 import { Admin } from './schema/admin.schema';
 import { AdminSignUpDto } from './dto/signup-admin.dto';
+import { Listener } from './schema/listener.schema';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +17,10 @@ export class AuthService {
     private artistModel: Model<Artist>,
     @InjectModel(Admin.name)
     private adminModel: Model<Admin>,
+    @InjectModel(Listener.name)
+    private listenerModel: Model<Listener>,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   // artist
   async artistSignUp(reqBody: SignUpDto): Promise<{ token: string }> {
@@ -25,7 +28,6 @@ export class AuthService {
     const hashedPwd = await bcrypt.hash(reqBody.password, 10);
     artistObj.password = hashedPwd;
     const artist = await this.artistModel.create(artistObj);
-    console.log(artist);
     const accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
     return { token: accessToken };
   }
@@ -35,6 +37,9 @@ export class AuthService {
     const artist = await this.artistModel.findOne({ email: accObj.email });
     if (!artist) {
       throw new UnauthorizedException('Invalid email or password');
+    }
+    if (artist?.banned) {
+      throw new UnauthorizedException('Account has been banned')
     }
     const valid = await bcrypt.compare(accObj.password, artist.password);
     let accessToken: string;
@@ -46,25 +51,24 @@ export class AuthService {
 
   // listener
   async listenerSignUp(reqBody: SignUpDto): Promise<{ token: string }> {
-    const artistObj = { ...reqBody };
+    const listenerObj = { ...reqBody };
     const hashedPwd = await bcrypt.hash(reqBody.password, 10);
-    artistObj.password = hashedPwd;
-    const artist = await this.artistModel.create(artistObj);
-    console.log(artist);
-    const accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+    listenerObj.password = hashedPwd;
+    const listener = await this.listenerModel.create(listenerObj);
+    const accessToken = this.jwtService.sign({ id: listener._id, role: 2 });
     return { token: accessToken };
   }
 
   async listenerLogIn(reqBody: LogInDto): Promise<{ token: string }> {
     const accObj = { ...reqBody };
-    const artist = await this.artistModel.findOne({ email: accObj.email });
-    if (!artist) {
+    const listener = await this.listenerModel.findOne({ email: accObj.email });
+    if (!listener) {
       throw new UnauthorizedException('Invalid email or password');
     }
-    const valid = await bcrypt.compare(accObj.password, artist.password);
+    const valid = await bcrypt.compare(accObj.password, listener.password);
     let accessToken: string;
     if (valid) {
-      accessToken = this.jwtService.sign({ id: artist._id, role: 1 });
+      accessToken = this.jwtService.sign({ id: listener._id, role: 2 });
     }
     return { token: accessToken };
   }
@@ -75,7 +79,6 @@ export class AuthService {
     const hashedPwd = await bcrypt.hash(reqBody.password, 10);
     adminObj.password = hashedPwd;
     const admin = await this.adminModel.create(adminObj);
-    console.log(admin);
     const accessToken = this.jwtService.sign({ id: admin._id, role: 0 });
     return { token: accessToken };
   }

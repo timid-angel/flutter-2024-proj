@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Put, Render, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Put, Req, Patch } from '@nestjs/common';
 import { ArtistsService } from './artists.service';
 import { Request } from 'express';
 import { Artist } from 'src/auth/schema/artist.schema';
@@ -9,22 +9,33 @@ export class ArtistsController {
         private artistService: ArtistsService
     ) { }
 
-    @Get('/manage')
-    @Render('artist')
-    getPage() { return }
-
     @Get()
     async getArtists(@Req() req: Request) {
         return this.artistService.getArtists(req)
     }
 
+    @Put('/update')
+    async updateArtist(@Req() req: Request) {
+        return this.artistService.updateArtist(req)
+    }
+
     @Put(':id')
-    async updateArtist(@Param('id') id: string, @Req() req: Request) {
-        return this.artistService.updateArtist(id, req)
+    async updateArtistAdmin(@Param('id') id: string, @Req() req: Request) {
+        return this.artistService.updateArtistAdmin(id, req)
     }
 
     @Delete(':id')
     async deleteArtist(@Param('id') id: string, @Req() req: Request) {
         return this.artistService.deleteArtist(id, req)
+    }
+
+    @Patch('/ban/:id')
+    async banArtist(@Param('id') id: string, @Req() req: Request) {
+        return this.artistService.changeBan(id, req, true)
+    }
+
+    @Patch('/unban/:id')
+    async unBanArtist(@Param('id') id: string, @Req() req: Request) {
+        return this.artistService.changeBan(id, req, false)
     }
 }

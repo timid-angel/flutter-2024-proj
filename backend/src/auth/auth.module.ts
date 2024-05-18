@@ -7,6 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { AdminSchema } from './schema/admin.schema';
+import { ListenerSchema } from './schema/listener.schema';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { AdminSchema } from './schema/admin.schema';
         }
       }
     }),
-    MongooseModule.forFeature([{ name: 'Artist', schema: ArtistSchema }, { name: 'Admin', schema: AdminSchema }])
+    MongooseModule.forFeature([{ name: 'Artist', schema: ArtistSchema }, { name: 'Admin', schema: AdminSchema }, { name: 'Listener', schema: ListenerSchema }])
   ],
   controllers: [AuthController],
   providers: [AuthService]

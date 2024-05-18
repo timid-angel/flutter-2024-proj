@@ -8,28 +8,7 @@ import { AdminSignUpDto } from './dto/signup-admin.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
-
-  // pages
-  @Get('/login')
-  @Render('login')
-  getLoginPage() {}
-
-  @Get('/signup')
-  @Render('signup')
-  getSignupPage() {}
-
-  @Get('/admin/login')
-  @Render('adminLogin')
-  getAdminLoginPage() {
-    return {};
-  }
-
-  @Get('/admin/signup')
-  @Render('adminSignup')
-  getAdminSignupPage() {
-    return {};
-  }
+  constructor(private authService: AuthService) { }
 
   // artist
   @Post('/artist/signup')
@@ -40,7 +19,6 @@ export class AuthController {
   @Post('/artist/login')
   async artistLogin(@Body() reqBody: LogInDto, @Res() res: Response) {
     const { token } = await this.authService.artistLogIn(reqBody);
-    console.log(token);
     if (token) {
       res
         .cookie('accessToken', token, {
@@ -62,7 +40,6 @@ export class AuthController {
   @Post('/listener/login')
   async listenerLogin(@Body() reqBody: LogInDto, @Res() res: Response) {
     const { token } = await this.authService.listenerLogIn(reqBody);
-    console.log(token);
     if (token) {
       res
         .cookie('accessToken', token, {
@@ -84,7 +61,6 @@ export class AuthController {
   @Post('/admin/login')
   async adminLogIn(@Body() reqBody: LogInDto, @Res() res: Response) {
     const { token } = await this.authService.adminLogIn(reqBody);
-    console.log(token);
     if (token) {
       res
         .cookie('accessToken', token, {
