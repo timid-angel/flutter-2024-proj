@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:file_picker/file_picker.dart';
 
 class AddSongModal extends StatefulWidget {
   const AddSongModal({super.key});
@@ -11,6 +11,19 @@ class AddSongModal extends StatefulWidget {
 class AddSongModalState extends State<AddSongModal> {
   late final TextEditingController _songNameController = TextEditingController();
   late String _filePath = '';
+
+  void _pickSong() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom, 
+      allowedExtensions: ['mp3'], 
+    );
+    if (result != null) {
+      setState(() {
+        _filePath = result.files.single.path ?? '';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -50,7 +63,7 @@ class AddSongModalState extends State<AddSongModal> {
             ),
             const SizedBox(height: 10.0),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: _pickSong,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent, 
                 foregroundColor: Colors.white, 
@@ -69,7 +82,7 @@ class AddSongModalState extends State<AddSongModal> {
               onPressed: () {
                 final String songName = _songNameController.text.trim();
                 if (songName.isNotEmpty && _filePath.isNotEmpty) {
-                  // Add song logic
+                  
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

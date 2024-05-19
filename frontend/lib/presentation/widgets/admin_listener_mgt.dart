@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/presentation/widgets/admin_header.dart';
 import 'delete_confirmation_modal.dart';
+import '../../data/listener_data.dart';
 
 class AdminListenerMGT extends StatelessWidget {
   const AdminListenerMGT({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,50 +27,49 @@ class AdminListenerMGT extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView(
-                children: [
-                  for (int i = 1; i <= 10; i++)
-                    ListTile(
-                      minLeadingWidth: 72,
-                      minVerticalPadding: 20,
-                      leading: const CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.account_circle,
-                          size: 32,
-                        ),
-                      ),
-                      title: Text('Listener $i'),
-                      textColor: Colors.white,
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                           onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return DeleteConfirmationDialog(
-                                    title:
-                                        'Are you sure you want to delete this Listener?',
-                                    content:
-                                        '',
-                                    onConfirm: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  );
-                                },
-                              );
-                            },
-                            tooltip: 'Delete',
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
+              child: ListView.builder(
+                itemCount: listenerData.length,
+                itemBuilder: (context, index) {
+                  final listener = listenerData[index];
+
+                  return ListTile(
+                    minLeadingWidth: 20,
+                    minVerticalPadding: 20,
+                    leading: CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage('assets/images/u.png'),
                     ),
-                ],
+                    title: Text(listener.name),
+                    subtitle: Text(listener.email, style: TextStyle(color: const Color.fromARGB(255, 193, 191, 191))),
+                    textColor: Colors.white,
+                    subtitleTextStyle: TextStyle(color: Colors.white70),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return DeleteConfirmationDialog(
+                                  title: 'Are you sure you want to delete this Listener?',
+                                  content: '',
+                                  onConfirm: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                );
+                              },
+                            );
+                          },
+                          tooltip: 'Delete',
+                          color: Colors.red,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:masinqo/presentation/widgets/profile_mgmt-section_title.dart';
+import 'dart:io';
 import '../widgets/artist_drawer.dart';
 import '../widgets/artist_app_bar.dart';
 import '../../../data/artist_data.dart';
@@ -47,7 +49,7 @@ class ArtistProfileState extends State<ArtistProfile> {
                     left: 0,
                     child: IconButton(
                       icon: const Icon(Icons.edit, color: Color(0xFF39DCF3)),
-                      onPressed: (){},
+                      onPressed: _pickProfileImage,
                     ),
                   ),
                 ],
@@ -101,14 +103,30 @@ class ArtistProfileState extends State<ArtistProfile> {
     );
   }
 
+  void _pickProfileImage() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+    if (result != null) {
+      setState(() {
+        _profileImagePath = result.files.single.path!;
+      });
+    }
+  }
 
   Widget profilePicture() {
+    if (_profileImagePath.startsWith('assets/')) {
       return Image.asset(
         _profileImagePath,
         fit: BoxFit.cover,
       );
-}
-
+    } else {
+      return Image.file(
+        File(_profileImagePath),
+        fit: BoxFit.cover,
+      );
+    }
+  }
 }
 
 class RoundedInputField extends StatelessWidget {
@@ -136,4 +154,5 @@ class RoundedInputField extends StatelessWidget {
         ),
       ),
     );
-  }}
+  }
+}
