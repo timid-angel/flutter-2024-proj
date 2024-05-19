@@ -12,6 +12,9 @@ export class Listener extends Document {
     @Prop({ default: [] })
     favorites: Array<String>
 
+    @Prop({ default: [] })
+    playlists: Array<String>
+
     @Prop()
     password: string
 }

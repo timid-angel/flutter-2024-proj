@@ -1,32 +1,33 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { PlaylistService } from './playlist.service';
+import { Request } from 'express'
 
 @Controller('playlist')
 export class PlaylistController {
   constructor(private readonly playlistService: PlaylistService) { }
 
   @Post()
-  create() {
-    return this.playlistService.create();
+  create(@Req() req: Request) {
+    return this.playlistService.create(req);
   }
 
   @Get()
-  findAll() {
-    return this.playlistService.findAll();
+  findAll(@Req() req: Request) {
+    return this.playlistService.findAll(req);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.playlistService.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.playlistService.findOne(req, id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string) {
-    return this.playlistService.update(id);
+  update(@Param('id') id: string, @Req() req: Request) {
+    return this.playlistService.update(req, id);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.playlistService.remove(id);
+  remove(@Param('id') id: string, @Req() req: Request) {
+    return this.playlistService.remove(req, id);
   }
 }

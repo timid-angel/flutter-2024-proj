@@ -3,12 +3,15 @@ import { Document } from "mongoose";
 
 @Schema()
 
-export class Artist extends Document {
+export class Playlist extends Document {
     @Prop()
     name: string
 
     @Prop()
+    owner: string
+
+    @Prop({ default: [] })
     songs: Array<String>
 }
 
-export const ArtistSchema = SchemaFactory.createForClass(Artist)
+export const PlaylistSchema = SchemaFactory.createForClass(Playlist)

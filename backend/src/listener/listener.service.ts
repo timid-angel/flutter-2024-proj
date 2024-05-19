@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt'
 import { ObjectId } from 'mongodb';
 import { Request } from 'express';
 import { Album } from 'src/albums/schemas/album.schema';
+import { Playlist } from 'src/playlist/schema/playlist.schema';
 
 @Injectable()
 export class ListenerService {
@@ -17,7 +18,9 @@ export class ListenerService {
     @InjectModel(Admin.name)
     private adminModel: mongoose.Model<Admin>,
     @InjectModel(Album.name)
-    private albumModel: mongoose.Model<Album>
+    private albumModel: mongoose.Model<Album>,
+    @InjectModel(Playlist.name)
+    private playlistModel: mongoose.Model<Playlist>,
   ) { }
 
   async parseToken(req: Request, model: any, checkedRole: Number) {
@@ -83,7 +86,7 @@ export class ListenerService {
       throw new BadRequestException('Listener with the provided ID does not exist.')
     }
 
-    // DELETE ALL THE PLAYLISTS HERE
+    await this.playlistModel.deleteMany({ owner: id })
     await this.listenerModel.findByIdAndDelete(id)
   }
 

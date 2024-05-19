@@ -1,24 +1,79 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { Listener } from 'src/auth/schema/listener.schema';
+import { Playlist } from './schema/playlist.schema';
+import * as jwt from 'jsonwebtoken'
+import { ObjectId } from 'mongodb'
+import { Request } from 'express';
 
 @Injectable()
 export class PlaylistService {
-  create() {
-    return 'This action adds a new playlist';
+  constructor(
+    @InjectModel(Listener.name)
+    private listenerModel: mongoose.Model<Listener>,
+    @InjectModel(Playlist.name)
+    private playlistModel: mongoose.Model<Playlist>,
+  ) { }
+
+  async parseToken(req: Request, model: any, checkedRole: Number) {
+    try {
+      if (!req.cookies?.accessToken) {
+        throw new BadRequestException('Cookie not found')
+      }
+      const token = req.cookies.accessToken
+      const decoded = await jwt.verify(token, process.env.JWT_ACCESS_KEY)
+      const idStr = (decoded as any).id
+      const role = Number((decoded as any).role)
+      const user = await model.findById(idStr)
+      if (role !== checkedRole) throw new UnauthorizedException('Permission denied, not logged in as an authorized user')
+      if (!user) {
+        throw new UnauthorizedException('User not found.')
+      }
+      return user
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
   }
 
-  findAll() {
-    return `This action returns all playlist`;
+  async create(req: Request) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    const { name } = req.body
+    const playlist = await this.playlistModel.create({ name, owner: listener._id })
+    listener.playlists.push(playlist._id.toString())
+    return playlist
   }
 
-  findOne(id: string) {
-    return `This action returns a playlist`;
+  async findAll(req: Request) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    return await this.playlistModel.find({ _id: { $in: listener.playlists } })
   }
 
-  update(id: string) {
-    return `This action updates a playlist`;
+  async findOne(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!(id in listener.playlists)) {
+      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+    }
+
+    return await this.playlistModel.find({ _id: id })
   }
 
-  remove(id: string) {
-    return `This action removes a playlist`;
+  async update(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!(id in listener.playlists)) {
+      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+    }
+    const { name } = req.body
+    const playlist = await this.playlistModel.findById(id)
+    playlist.name = name
+    playlist.save()
+  }
+
+  async remove(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!(id in listener.playlists)) {
+      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+    }
+    return await this.playlistModel.findByIdAndDelete(id)
   }
 }
