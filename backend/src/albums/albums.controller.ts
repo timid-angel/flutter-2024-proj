@@ -19,21 +19,10 @@ export class AlbumsController {
         return this.albumService.findAll(req, query)
     }
 
-    @Get('/manage')
-    @Render('artist-home')
-    async getPage(@Req() req: Request) {
-        return await this.albumService.getArtistInfo(req)
-    }
 
     @Get('/published')
     async getAlbumByArtistId(@Req() req: Request) {
         return this.albumService.findByArtistId(req)
-    }
-
-    @Get('/info/:id')
-    @Render('album-page')
-    async getAlbumPage(@Param('id') id: string) {
-        return this.albumService.getAlbumInfo(id)
     }
 
     @Get(':id')
@@ -56,8 +45,6 @@ export class AlbumsController {
             res.status(500).send('Internal Server Error');
         }
     }
-
-
 
 
     @Post()
@@ -128,5 +115,10 @@ export class AlbumsController {
     @Delete('songs/:id')
     async removeSong(@Param('id') id: string, @Req() req: Request) {
         return await this.albumService.removeSong(id, req)
+    }
+
+    @Get('/songs/:id/:idx')
+    async getSong(@Param('id') id: string, @Param('idx') idx: string) {
+        return this.albumService.getSong(id, idx)
     }
 }

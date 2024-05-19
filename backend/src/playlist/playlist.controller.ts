@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/
 import { PlaylistService } from './playlist.service';
 import { Request } from 'express'
 
-@Controller('playlist')
+@Controller('playlists')
 export class PlaylistController {
   constructor(private readonly playlistService: PlaylistService) { }
 

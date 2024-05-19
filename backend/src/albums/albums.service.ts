@@ -348,4 +348,17 @@ export class AlbumsService {
         await document.save();
         return document;
     }
+
+    async getSong(albumId: string, idx: string) {
+        if (isNaN(parseInt(idx))) throw new BadRequestException('Invalid song index - non numeric index')
+
+        const album = await this.albumModel.findById(albumId)
+        const songIdx = parseInt(idx)
+
+        if (songIdx < album.songs.length) {
+            return album.songs[songIdx]
+        }
+
+        throw new BadRequestException('Invalid song index - index out of bound')
+    }
 }

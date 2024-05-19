@@ -96,15 +96,7 @@ export class ListenerService {
       throw new BadRequestException('Listener with the provided ID does not exist.')
     }
 
-    const res = []
-    for (let i = 0; i < listener.favorites.length; i++) {
-      const album = this.getAlbumById(listener.favorites[i])
-      if (album) {
-        res.push(album)
-      }
-    }
-
-    return res
+    return this.albumModel.find({ _id: { $in: listener.favorites } })
   }
 
   async addFavorite(req: Request, id: string) {
@@ -118,8 +110,9 @@ export class ListenerService {
       throw new BadRequestException('Album with the provided ID does not exist.')
     }
 
-    listener.favorites.push(id)
+    listener.favorites.push(id.toString())
     listener.save()
+    return listener.favorites[listener.favorites.length - 1]
   }
 
   async removeFavorite(req: Request, id: string) {

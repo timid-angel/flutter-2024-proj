@@ -41,6 +41,7 @@ export class PlaylistService {
     const { name } = req.body
     const playlist = await this.playlistModel.create({ name, owner: listener._id })
     listener.playlists.push(playlist._id.toString())
+    listener.save()
     return playlist
   }
 
@@ -51,7 +52,7 @@ export class PlaylistService {
 
   async findOne(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
-    if (!(id in listener.playlists)) {
+    if (listener.playlists.indexOf(id) === -1) {
       throw new UnauthorizedException("The current listener is not the owner of the playlist")
     }
 
@@ -60,7 +61,7 @@ export class PlaylistService {
 
   async update(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
-    if (!(id in listener.playlists)) {
+    if (listener.playlists.indexOf(id) === -1) {
       throw new UnauthorizedException("The current listener is not the owner of the playlist")
     }
     const { name } = req.body
@@ -71,9 +72,11 @@ export class PlaylistService {
 
   async remove(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
-    if (!(id in listener.playlists)) {
+    if (listener.playlists.indexOf(id) === -1) {
       throw new UnauthorizedException("The current listener is not the owner of the playlist")
     }
+    listener.playlists.remove(id)
+    listener.save()
     return await this.playlistModel.findByIdAndDelete(id)
   }
 }
