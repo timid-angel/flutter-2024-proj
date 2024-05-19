@@ -14,7 +14,7 @@ export class ArtistsController {
         return this.artistService.getArtists(req)
     }
 
-    @Put('/update')
+    @Patch('update')
     async updateArtist(@Req() req: Request) {
         return this.artistService.updateArtist(req)
     }

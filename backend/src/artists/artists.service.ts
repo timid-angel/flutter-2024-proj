@@ -42,7 +42,7 @@ export class ArtistsService {
 
     async getArtists(req: Request) {
         await this.parseToken(req, this.adminModel, 0)
-        return this.artistModel.find({})
+        return this.artistModel.find({}).select("-password -__v")
     }
 
     async updateArtistAdmin(id: string, req: Request) {
