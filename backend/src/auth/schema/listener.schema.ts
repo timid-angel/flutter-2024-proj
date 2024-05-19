@@ -9,6 +9,9 @@ export class Listener extends Document {
     @Prop({ unique: [true, 'Email already exists'] })
     email: string
 
+    @Prop({ default: [] })
+    favorites: Array<String>
+
     @Prop()
     password: string
 }

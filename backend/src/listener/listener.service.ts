@@ -7,6 +7,7 @@ import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import { ObjectId } from 'mongodb';
 import { Request } from 'express';
+import { Album } from 'src/albums/schemas/album.schema';
 
 @Injectable()
 export class ListenerService {
@@ -14,7 +15,9 @@ export class ListenerService {
     @InjectModel(Listener.name)
     private listenerModel: mongoose.Model<Listener>,
     @InjectModel(Admin.name)
-    private adminModel: mongoose.Model<Admin>
+    private adminModel: mongoose.Model<Admin>,
+    @InjectModel(Album.name)
+    private albumModel: mongoose.Model<Album>
   ) { }
 
   async parseToken(req: Request, model: any, checkedRole: Number) {
@@ -35,6 +38,14 @@ export class ListenerService {
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }
+  }
+
+  async getAlbumById(id: string) {
+    if (!ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ID provided in the route')
+    }
+
+    return await this.albumModel.findById(id)
   }
 
   async findAll(req: Request) {
@@ -74,5 +85,52 @@ export class ListenerService {
 
     // DELETE ALL THE PLAYLISTS HERE
     await this.listenerModel.findByIdAndDelete(id)
+  }
+
+  async getFavorites(req: Request) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!listener) {
+      throw new BadRequestException('Listener with the provided ID does not exist.')
+    }
+
+    const res = []
+    for (let i = 0; i < listener.favorites.length; i++) {
+      const album = this.getAlbumById(listener.favorites[i])
+      if (album) {
+        res.push(album)
+      }
+    }
+
+    return res
+  }
+
+  async addFavorite(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!listener) {
+      throw new BadRequestException('Listener with the provided ID does not exist.')
+    }
+
+    const album = await this.getAlbumById(id)
+    if (!album) {
+      throw new BadRequestException('Album with the provided ID does not exist.')
+    }
+
+    listener.favorites.push(id)
+    listener.save()
+  }
+
+  async removeFavorite(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (!listener) {
+      throw new BadRequestException('Listener with the provided ID does not exist.')
+    }
+
+    const album = await this.getAlbumById(id)
+    if (!album) {
+      throw new BadRequestException('Album with the provided ID does not exist.')
+    }
+
+    listener.favorites.remove(id)
+    listener.save()
   }
 }

@@ -20,4 +20,19 @@ export class ListenerController {
   remove(@Param('id') id: string, @Req() req: Request) {
     return this.listenerService.remove(req, id);
   }
+
+  @Get("/favorites")
+  getFavorites(@Req() req: Request) {
+    return this.listenerService.getFavorites(req)
+  }
+
+  @Post("/favorites/:id")
+  addFavorite(@Param('id') id: string, @Req() req: Request) {
+    return this.listenerService.addFavorite(req, id)
+  }
+
+  @Delete("/favorites/:id")
+  removeFavorite(@Param('id') id: string, @Req() req: Request) {
+    return this.listenerService.removeFavorite(req, id)
+  }
 }
