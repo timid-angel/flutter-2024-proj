@@ -117,6 +117,7 @@ export class AlbumsController {
         return await this.albumService.removeSong(id, req)
     }
 
+    // used to get songs for playlists
     @Get('/songs/:id/:idx')
     async getSong(@Param('id') id: string, @Param('idx') idx: string) {
         return this.albumService.getSong(id, idx)

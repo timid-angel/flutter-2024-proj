@@ -30,4 +30,15 @@ export class PlaylistController {
   remove(@Param('id') id: string, @Req() req: Request) {
     return this.playlistService.remove(req, id);
   }
+
+  // songs in playlists
+  @Post('/songs/:id')
+  addSong(@Param('id') playlistID: string, @Req() req: Request) {
+    return this.playlistService.addSong(req, playlistID)
+  }
+
+  @Delete('/songs/:id')
+  deleteSong(@Param('id') playlistID: string, @Req() req: Request) {
+    return this.playlistService.removeSong(req, playlistID)
+  }
 }

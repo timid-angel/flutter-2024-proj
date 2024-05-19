@@ -1,8 +1,12 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-@Schema()
+class Song {
+    album: string
+    index: number
+}
 
+@Schema()
 export class Playlist extends Document {
     @Prop()
     name: string
@@ -11,7 +15,7 @@ export class Playlist extends Document {
     owner: string
 
     @Prop({ default: [] })
-    songs: Array<String>
+    songs: Array<Song>
 }
 
 export const PlaylistSchema = SchemaFactory.createForClass(Playlist)

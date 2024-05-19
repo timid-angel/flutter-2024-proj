@@ -53,7 +53,7 @@ export class PlaylistService {
   async findOne(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
     if (listener.playlists.indexOf(id) === -1) {
-      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+      throw new UnauthorizedException("The current listener is not the owner of the playlist or the playlist doesn't exist.")
     }
 
     return await this.playlistModel.find({ _id: id })
@@ -62,7 +62,7 @@ export class PlaylistService {
   async update(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
     if (listener.playlists.indexOf(id) === -1) {
-      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+      throw new UnauthorizedException("The current listener is not the owner of the playlist or the playlist doesn't exist.")
     }
     const { name } = req.body
     const playlist = await this.playlistModel.findById(id)
@@ -73,10 +73,33 @@ export class PlaylistService {
   async remove(req: Request, id: string) {
     const listener = await this.parseToken(req, this.listenerModel, 2)
     if (listener.playlists.indexOf(id) === -1) {
-      throw new UnauthorizedException("The current listener is not the owner of the playlist")
+      throw new UnauthorizedException("The current listener is not the owner of the playlist or the playlist doesn't exist.")
     }
     listener.playlists.remove(id)
     listener.save()
     return await this.playlistModel.findByIdAndDelete(id)
+  }
+
+  async addSong(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (listener.playlists.indexOf(id) === -1) {
+      throw new UnauthorizedException("The current listener is not the owner of the playlist or the playlist doesn't exist.")
+    }
+    const playlist = await this.playlistModel.findById(id)
+    const { album, index } = req.body
+    const song = { album, index }
+    playlist.songs.push(song)
+    playlist.save()
+  }
+
+  async removeSong(req: Request, id: string) {
+    const listener = await this.parseToken(req, this.listenerModel, 2)
+    if (listener.playlists.indexOf(id) === -1) {
+      throw new UnauthorizedException("The current listener is not the owner of the playlist or the playlist doesn't exist.")
+    }
+    const playlist = await this.playlistModel.findById(id)
+    const { album, index } = req.body
+    playlist.songs = playlist.songs.filter((song) => (song.album != album && song.index != index))
+    playlist.save()
   }
 }
