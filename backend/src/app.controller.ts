@@ -8,6 +8,6 @@ export class AppController {
 
   @Get('/logout')
   async logout(@Res() res: Response) {
-    res.cookie('accessToken', {}, { maxAge: 1 }).status(200).redirect('/auth/login')
+    res.cookie('accessToken', {}, { maxAge: 1 }).sendStatus(200)
   }
 }
