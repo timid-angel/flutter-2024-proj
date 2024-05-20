@@ -6,6 +6,7 @@ import '../widgets/artist_drawer.dart';
 import '../widgets/artist_app_bar.dart';
 import '../widgets/artist_song_card.dart';
 import '../widgets/delete_confirmation_modal.dart';
+import '../../audio_manager/artist_audio_manager.dart';
 
 class ArtistsAlbumPage extends StatefulWidget {
   const ArtistsAlbumPage({
@@ -19,6 +20,19 @@ class ArtistsAlbumPage extends StatefulWidget {
 class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late Album album;
+  late AudioManager _audioManager;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioManager = AudioManager();
+  }
+
+  @override
+  void dispose() {
+    _audioManager.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +63,7 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                     maxLines: 2,
                   ),
                   Text(
-                    '0${album.songs.length} Tracks',
+                    '${album.songs.length} Tracks',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12.0,
@@ -214,6 +228,7 @@ class ArtistsAlbumPageState extends State<ArtistsAlbumPage> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 8.0),
                   child: SongCard(
+                    audioManager: _audioManager, 
                     songNumber: index + 1,
                     songName: album.songs[index].name,
                     artistName: album.songs[index].album.artist.name,

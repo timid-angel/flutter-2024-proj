@@ -6,9 +6,10 @@ import 'package:masinqo/presentation/widgets/listener_album_headline.dart';
 import 'package:masinqo/presentation/widgets/listener_album_songlist.dart';
 import 'package:masinqo/presentation/widgets/listener_appbar.dart';
 import 'package:masinqo/presentation/widgets/listener_drawer.dart';
+import '../../audio_manager/listener_audio_manager.dart'; 
 
 class AlbumWidget extends StatefulWidget {
-  const AlbumWidget({super.key});
+  const AlbumWidget({Key? key}) : super(key: key);
 
   @override
   State<AlbumWidget> createState() => _AlbumWidgetState();
@@ -16,6 +17,19 @@ class AlbumWidget extends StatefulWidget {
 
 class _AlbumWidgetState extends State<AlbumWidget> {
   late Album album;
+  late AudioManager audioManager; 
+
+  @override
+  void initState() {
+    super.initState();
+    audioManager = AudioManager();
+  }
+
+  @override
+  void dispose() {
+    audioManager.dispose(); 
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +64,8 @@ class _AlbumWidgetState extends State<AlbumWidget> {
                       children: [
                         AlbumHeadlineWidget(album: album),
                         const Divider(height: 30, thickness: 2),
-                        AlbumTracksWidget(album: album, onAdd: () {}),
+                      
+                        AlbumTracksWidget(album: album, onAdd: () {}, audioManager: audioManager),
                       ],
                     ),
                   ),

@@ -7,11 +7,10 @@ import 'package:masinqo/presentation/widgets/listener_playlist_albumart.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_buttons.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_headline.dart';
 import 'package:masinqo/presentation/widgets/listener_playlist_songlist.dart';
+import '../../audio_manager/listener_audio_manager.dart';
 
 class PlaylistWidget extends StatefulWidget {
-  const PlaylistWidget({
-    super.key,
-  });
+  const PlaylistWidget({Key? key}) : super(key: key);
 
   @override
   State<PlaylistWidget> createState() => _PlaylistWidgetState();
@@ -25,6 +24,8 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
     playlist = ModalRoute.of(context)!.settings.arguments as Playlist;
+
+    final AudioManager audioManager = AudioManager();
 
     return Scaffold(
       backgroundColor: AppColors.black,
@@ -62,6 +63,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                         PlaylistTracksWidget(
                           playlist: playlist,
                           onDelete: () {},
+                          audioManager: audioManager,
                         ),
                       ],
                     ),

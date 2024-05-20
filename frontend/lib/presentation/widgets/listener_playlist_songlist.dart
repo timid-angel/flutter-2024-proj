@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:masinqo/models/playlist.dart';
 import 'package:masinqo/models/songs.dart';
-import 'package:masinqo/presentation/widgets/listener_playlist_songtile.dart';
+import '../widgets/listener_playlist_songtile.dart';
+import '../../audio_manager/listener_audio_manager.dart';
 
 class PlaylistTracksWidget extends StatelessWidget {
   const PlaylistTracksWidget({
-    super.key,
+    Key? key,
     required this.playlist,
+   
     required this.onDelete,
-  });
+    required this.audioManager, 
+  }) : super(key: key);
 
   final Playlist playlist;
   final Function() onDelete;
+ 
+  final AudioManager audioManager; 
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +36,8 @@ class PlaylistTracksWidget extends StatelessWidget {
             return PlaylistSongTileWidget(
               song: song,
               onDelete: onDelete,
+          
+              audioManager: audioManager,
             );
           },
         ),
