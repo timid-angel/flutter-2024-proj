@@ -6,7 +6,6 @@ import 'package:masinqo/presentation/widgets/modal_textfield.dart';
 
 class AddPlaylistWidget extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   AddPlaylistWidget({super.key});
 
@@ -50,24 +49,6 @@ class AddPlaylistWidget extends StatelessWidget {
                       },
                       hintText: "Playlist Name",
                       lineCount: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: ModalTextFieldWidget(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      controller: descriptionController,
-                      validator: (val) {
-                        if (val == null) {
-                          return "This field can not be empty";
-                        } else if (val.length <= 4) {
-                          return "Description name can not be shorter than 10 characters";
-                        }
-
-                        return null;
-                      },
-                      hintText: "Description",
-                      lineCount: 5,
                     ),
                   ),
                   Padding(
