@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Request } from 'express';
 import mongoose from 'mongoose';
@@ -8,6 +8,7 @@ import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import { Album } from 'src/albums/schemas/album.schema';
 import { ObjectId } from 'mongodb';
+import { existsSync, unlinkSync } from 'fs';
 
 @Injectable()
 export class ArtistsService {
@@ -57,9 +58,24 @@ export class ArtistsService {
         return this.artistModel.findById(id)
     }
 
-    async updateArtist(req: Request) {
+    async updateArtist(req: Request, file: Express.Multer.File) {
         const artist = await this.parseToken(req, this.artistModel, 1)
         const reqBody = req.body
+
+        if (file) {
+            if (artist.profilePicture.length > 0) {
+                const filePath = artist.profilePicture
+                if (!existsSync(filePath)) {
+                    throw new NotFoundException('File not found');
+                }
+                try {
+                    unlinkSync(filePath);
+                } catch (error) {
+                    console.error('Error deleting song:', error);
+                }
+            }
+            artist.profilePicture = file.path
+        }
 
         if ("email" in reqBody && reqBody["email"].length > 0) {
             artist["email"] = reqBody["email"]

@@ -13,7 +13,6 @@ import { Query as EQuery } from 'express-serve-static-core';
 
 @Injectable()
 export class AlbumsService {
-
     constructor(
         @InjectModel(Album.name)
         private albumModel: mongoose.Model<Album>,
@@ -49,10 +48,6 @@ export class AlbumsService {
         if (!artist) {
             throw new BadRequestException('Cookie not found')
         }
-        // if (!query.page) {
-        //     const albums = await this.albumModel.find({ artist: artist._id.valueOf() })
-        //     return albums
-        // }
         const albumsPerPage = 6
         const currentPage = Number(query.page) || 1
         const skipCount = albumsPerPage * (currentPage - 1)
@@ -176,14 +171,39 @@ export class AlbumsService {
     async deleteById(id: string, req: Request) {
         const artistFromToken: any = await this.parseToken(req)
         const artistFromAlbum = await this.albumModel.findById(id)
+        if (!artistFromAlbum || !artistFromToken) {
+            throw new BadRequestException("Album could not be found")
+        }
         if (artistFromToken._id.valueOf() !== artistFromAlbum.artist) {
             throw new UnauthorizedException('Only creators of an album can edit it.')
         }
+
+        await this.deleteAlbumSongs(id)
         await this.deleteAlbumArt(id, req)
         await this.albumModel.findByIdAndDelete(id)
     }
 
-    // helper function for removeSong - deletes the image from the FS
+    // helper function for deleteById - deletes the song files from the FS
+    async deleteAlbumSongs(id: string) {
+        const album = await this.findById(id);
+        if (!album) {
+            throw new NotFoundException('Album not found');
+        }
+
+        for (let i = 0; i < album.songs.length; i++) {
+            const filePath = album.songs[i].filePath
+            if (!existsSync(filePath)) {
+                throw new NotFoundException('File not found');
+            }
+            try {
+                unlinkSync(filePath);
+            } catch (error) {
+                console.error('Error deleting song:', error);
+            }
+        }
+    }
+
+    // helper function for deleteById - deletes the image from the FS
     async deleteAlbumArt(id: string, req: Request) {
         const album = await this.findById(id);
         if (!album) {
@@ -309,7 +329,6 @@ export class AlbumsService {
         }
         let found = false
         album.songs = album.songs.filter((item: Song) => {
-            console.log(item)
             if (item.name === songName) {
                 found = true
                 return false
@@ -331,7 +350,6 @@ export class AlbumsService {
             throw new Error('Document not found');
         }
         const songIndex = document.songs.findIndex(song => song.name == songName);
-        // console.log("index:", songIndex, "songname: ", songName)
         if (songIndex !== -1) {
             const filePath = document.songs[songIndex].filePath
             if (!existsSync(filePath)) {

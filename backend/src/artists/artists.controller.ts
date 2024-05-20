@@ -1,7 +1,9 @@
-import { Controller, Delete, Get, Param, Put, Req, Patch } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Put, Req, Patch, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ArtistsService } from './artists.service';
 import { Request } from 'express';
-import { Artist } from 'src/auth/schema/artist.schema';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller('artists')
 export class ArtistsController {
@@ -15,8 +17,27 @@ export class ArtistsController {
     }
 
     @Patch('update')
-    async updateArtist(@Req() req: Request) {
-        return this.artistService.updateArtist(req)
+    @UseInterceptors(FileInterceptor('profilePicture', {
+        storage: diskStorage({
+            destination: './local/artist-pictures',
+            filename: (req, file, callback) => {
+                callback(null, Date.now() + `${file.originalname}`)
+            }
+        }),
+        fileFilter: (req, file, callback) => {
+            const imageExtensions = ['.png', '.jpg', '.jpeg'];
+            const fileExtension = extname(file.originalname);
+            if (imageExtensions.includes(fileExtension)) {
+                callback(null, true);
+            } else {
+                console.log('Invalid file format. Only png, jpg and jpeg formats are accepted')
+                callback(null, false);
+                return
+            }
+        },
+    }))
+    async updateArtist(@Req() req: Request, @UploadedFile() file: Express.Multer.File) {
+        return this.artistService.updateArtist(req, file)
     }
 
     @Put(':id')

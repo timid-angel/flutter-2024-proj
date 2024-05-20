@@ -10,6 +10,9 @@ export class Artist extends Document {
     @Prop({ unique: [true, 'Email already exists'] })
     email: string
 
+    @Prop({ default: "" })
+    profilePicture: string
+
     @Prop({ default: false })
     banned: boolean
 
